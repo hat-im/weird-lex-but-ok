@@ -16,6 +16,8 @@ struct table_entry{
 
     char *lexeme;
     char  *token;
+    char *val;
+    int location;
     struct table_entry *next;
 };
 
@@ -65,7 +67,7 @@ int Search(entry** TablePointer, char *lexeme)
   return 0;
 }
 
-void InsertEntry(entry** TablePointer, char *lexeme,char *Token )
+void InsertEntry(entry** TablePointer, char *lexeme,char *Token, int location )
 {
   if(Search(TablePointer,lexeme) == 1)
     return;
@@ -80,6 +82,7 @@ void InsertEntry(entry** TablePointer, char *lexeme,char *Token )
     tempPoint = malloc(sizeof(entry));
     tempPoint->lexeme = strdup(lexeme);
     tempPoint->token = strdup(Token);
+    tempPoint->location = location;
     tempPoint->next = NULL;
 
     if (head == NULL)

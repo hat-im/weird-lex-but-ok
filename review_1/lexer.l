@@ -11,6 +11,8 @@
     int ErrFlag = 0;
 %}
 
+global int yylval;
+global int yylloc;
 
  /* Declarations */
 
