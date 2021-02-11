@@ -111,23 +111,24 @@ hex [0-9a-fA-F]
 
  /* Operators */
 
-"+"                                 {printf("\t%-50s : T_Arithmetic_Operator\n", yytext);}
-"-"                                 {printf("\t%-50s : T_Arithmetic_Operator\n", yytext);}
-"*"                                 {printf("\t%-50s : T_Arithmetic_Operator\n", yytext);}
-"/"                                 {printf("\t%-50s : T_Arithmetic_Operator\n", yytext);}
+"+"                                 {printf("\t%-50s : T_Addition_Arithmetic_Operator\n", yytext);}
+"-"                                 {printf("\t%-50s : T_Subtraction_Arithmetic_Operator\n", yytext);}
+"*"                                 {printf("\t%-50s : T_Multiplication_Arithmetic_Operator\n", yytext);}
+"/"                                 {printf("\t%-50s : T_Division_Arithmetic_Operator\n", yytext);}
 "="                                 {printf("\t%-50s : T_Assignment_Operator\n", yytext);}
 "--"                                {printf("\t%-50s : T_Decrement_Operator\n", yytext);}
 "++"                                {printf("\t%-50s : T_Increment_Operator\n", yytext);}
+"%"                                 {printf("\t%-50s : T_Modulus_Operator\n", yytext);} 
+">"                                 {printf("\t%-50s : T_GREATER\n", yytext);}
+"<"                                 {printf("\t%-50s : T_LESSER\n", yytext);}
+">="                                {printf("\t%-50s : T_GREATER_OR_EQUAL\n", yytext);}
+"<="                                {printf("\t%-50s : T_LESSER_OR_EQUAL\n", yytext);}
 
-">"                                 {printf("\t%-50s : T_Comparison_Operator\n", yytext);}
-"<"                                 {printf("\t%-50s : T_Comparison_Operator\n", yytext);}
-">="                                {printf("\t%-50s : T_Comparison Operator\n", yytext);}
-"<="                                {printf("\t%-50s : T_Comparison Operator\n", yytext);}
-"=="                                {printf("\t%-50s : T_Comparison Operator\n", yytext);}
-
-"||"                                {printf("\t%-50s : T_Boolean Operator\n", yytext);}
-"&&"                                {printf("\t%-50s : T_Boolean Operator\n", yytext);}
-"!"                                 {printf("\t%-50s : T_Boolean Operator\n", yytext);}
+"=="                                {printf("\t%-50s : T_IS_EQUAL_TO\n", yytext);}
+"!="                                {printf("\t%-50s : T_NOT_EQUAL_TO\n", yytext);}    
+"||"                                {printf("\t%-50s : T_OR\n", yytext);}
+"&&"                                {printf("\t%-50s : T_AND\n", yytext);}
+"!"                                 {printf("\t%-50s : T_NOT\n", yytext);}
 
 
  /* Strings and Characters */
@@ -160,7 +161,9 @@ hex [0-9a-fA-F]
 ","                                 {printf("\t%-50s : T_Comma\n", yytext);}
 ";"                                 {printf("\t%-50s : T_Delimiter\n", yytext);}
 "&"                                 {printf("\t%-50s : T_Ampersand\n",yytext);}
-
+"()"                                {printf("\t%-50s : T_Empty_Function_Parameters\n",yytext);}
+"{}"                                {printf("\t%-50s : T_Empty_Block\n",yytext);}
+"[]"                                {printf("\t%-50s : T_Empty_Array\n",yytext);}
 "\n"                                {yylineno++;}
 .                                   {printf("Error %d: Illegal character\n", yylineno);ErrFlag=1;}
 
