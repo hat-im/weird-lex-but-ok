@@ -32,7 +32,7 @@ const_char  \'.\'
 %%
 
 /* Rules */
-"int"               {printf("\t%s : t_keyword");create_entry(yytext,0,)}
+"int"               {printf("\t%s : t_keyword");insert}
 "short"
 "long"
 "char"
@@ -51,3 +51,10 @@ const_char  \'.\'
 "continue"
 "main"
 "return"
+
+%%
+
+int main(){
+    yylex();
+    create
+}
