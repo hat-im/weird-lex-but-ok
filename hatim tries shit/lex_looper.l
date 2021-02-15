@@ -32,7 +32,7 @@ const_char  \'.\'
 %%
 
 /* Rules */
-"int"               {printf("t_int"),}
+"int"               {printf("\t%s : t_keyword");create_entry(yytext,0,)}
 "short"
 "long"
 "char"
