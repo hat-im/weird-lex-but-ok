@@ -1,22 +1,22 @@
-%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
-%token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token XOR_ASSIGN OR_ASSIGN TYPE_NAME
+%token T_IDENTIFIER T_CONSTANT T_STRING_LITERAL T_SIZEOF
+%token T_PTR_OP T_INC_OP T_DEC_OP T_LEFT_OP T_RIGHT_OP T_LE_OP T_GE_OP T_EQ_OP T_NE_OP
+%token T_AND_OP T_OR_OP T_MUL_ASSIGN T_DIV_ASSIGN T_MOD_ASSIGN T_ADD_ASSIGN
+%token T_SUB_ASSIGN T_LEFT_ASSIGN T_RIGHT_ASSIGN T_AND_ASSIGN
+%token T_XOR_ASSIGN T_OR_ASSIGN T_TYPE_NAME
 
-%token TYPEDEF EXTERN STATIC AUTO REGISTER
-%token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
-%token STRUCT UNION ENUM ELLIPSIS
+%token T_TYPEDEF T_EXTERN T_STATIC T_AUTO T_REGISTER
+%token T_CHAR T_SHORT T_INT T_LONG T_SIGNED T_UNSIGNED T_FLOAT T_DOUBLE T_CONST T_VOLATILE T_VOID
+%token T_STRUCT T_UNION T_ENUM T_ELLIPSIS
 
-%token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token T_CASE T_DEFAULT T_IF T_ELSE T_SWITCH T_WHILE T_DO T_FOR T_GOTO T_CONTINUE T_BREAK T_RETURN
 
 %start translation_unit
 %%
 
 primary_expression
-	: IDENTIFIER
-	| CONSTANT
-	| STRING_LITERAL
+	: T_IDENTIFIER
+	| T_CONSTANT
+	| T_STRING_LITERAL
 	| '(' expression ')'
 	;
 
@@ -25,10 +25,10 @@ postfix_expression
 	| postfix_expression '[' expression ']'
 	| postfix_expression '(' ')'
 	| postfix_expression '(' argument_expression_list ')'
-	| postfix_expression '.' IDENTIFIER
-	| postfix_expression PTR_OP IDENTIFIER
-	| postfix_expression INC_OP
-	| postfix_expression DEC_OP
+	| postfix_expression '.' T_IDENTIFIER
+	| postfix_expression T_PTR_OP T_IDENTIFIER
+	| postfix_expression T_INC_OP
+	| postfix_expression T_DEC_OP
 	;
 
 argument_expression_list
@@ -38,11 +38,11 @@ argument_expression_list
 
 unary_expression
 	: postfix_expression
-	| INC_OP unary_expression
-	| DEC_OP unary_expression
+	| T_INC_OP unary_expression
+	| T_DEC_OP unary_expression
 	| unary_operator cast_expression
-	| SIZEOF unary_expression
-	| SIZEOF '(' type_name ')'
+	| T_SIZEOF unary_expression
+	| T_SIZEOF '(' type_name ')'
 	;
 
 unary_operator
@@ -74,22 +74,22 @@ additive_expression
 
 shift_expression
 	: additive_expression
-	| shift_expression LEFT_OP additive_expression
-	| shift_expression RIGHT_OP additive_expression
+	| shift_expression T_LEFT_OP additive_expression
+	| shift_expression T_RIGHT_OP additive_expression
 	;
 
 relational_expression
 	: shift_expression
 	| relational_expression '<' shift_expression
 	| relational_expression '>' shift_expression
-	| relational_expression LE_OP shift_expression
-	| relational_expression GE_OP shift_expression
+	| relational_expression T_LE_OP shift_expression
+	| relational_expression T_GE_OP shift_expression
 	;
 
 equality_expression
 	: relational_expression
-	| equality_expression EQ_OP relational_expression
-	| equality_expression NE_OP relational_expression
+	| equality_expression T_EQ_OP relational_expression
+	| equality_expression T_NE_OP relational_expression
 	;
 
 and_expression
@@ -109,12 +109,12 @@ inclusive_or_expression
 
 logical_and_expression
 	: inclusive_or_expression
-	| logical_and_expression AND_OP inclusive_or_expression
+	| logical_and_expression T_AND_OP inclusive_or_expression
 	;
 
 logical_or_expression
 	: logical_and_expression
-	| logical_or_expression OR_OP logical_and_expression
+	| logical_or_expression T_OR_OP logical_and_expression
 	;
 
 conditional_expression
@@ -129,16 +129,16 @@ assignment_expression
 
 assignment_operator
 	: '='
-	| MUL_ASSIGN
-	| DIV_ASSIGN
-	| MOD_ASSIGN
-	| ADD_ASSIGN
-	| SUB_ASSIGN
-	| LEFT_ASSIGN
-	| RIGHT_ASSIGN
-	| AND_ASSIGN
-	| XOR_ASSIGN
-	| OR_ASSIGN
+	| T_MUL_ASSIGN
+	| T_DIV_ASSIGN
+	| T_MOD_ASSIGN
+	| T_ADD_ASSIGN
+	| T_SUB_ASSIGN
+	| T_LEFT_ASSIGN
+	| T_RIGHT_ASSIGN
+	| T_AND_ASSIGN
+	| T_XOR_ASSIGN
+	| T_OR_ASSIGN
 	;
 
 expression
@@ -175,37 +175,37 @@ init_declarator
 	;
 
 storage_class_specifier
-	: TYPEDEF
-	| EXTERN
-	| STATIC
-	| AUTO
-	| REGISTER
+	: T_TYPEDEF
+	| T_EXTERN
+	| T_STATIC
+	| T_AUTO
+	| T_REGISTER
 	;
 
 type_specifier
-	: VOID
-	| CHAR
-	| SHORT
-	| INT
-	| LONG
-	| FLOAT
-	| DOUBLE
-	| SIGNED
-	| UNSIGNED
+	: T_VOID
+	| T_CHAR
+	| T_SHORT
+	| T_INT
+	| T_LONG
+	| T_FLOAT
+	| T_DOUBLE
+	| T_SIGNED
+	| T_UNSIGNED
 	| struct_or_union_specifier
 	| enum_specifier
-	| TYPE_NAME
+	| T_TYPE_NAME
 	;
 
 struct_or_union_specifier
-	: struct_or_union IDENTIFIER '{' struct_declaration_list '}'
+	: struct_or_union T_IDENTIFIER '{' struct_declaration_list '}'
 	| struct_or_union '{' struct_declaration_list '}'
-	| struct_or_union IDENTIFIER
+	| struct_or_union T_IDENTIFIER
 	;
 
 struct_or_union
-	: STRUCT
-	| UNION
+	: T_STRUCT
+	| T_UNION
 	;
 
 struct_declaration_list
@@ -236,9 +236,9 @@ struct_declarator
 	;
 
 enum_specifier
-	: ENUM '{' enumerator_list '}'
-	| ENUM IDENTIFIER '{' enumerator_list '}'
-	| ENUM IDENTIFIER
+	: T_ENUM '{' enumerator_list '}'
+	| T_ENUM T_IDENTIFIER '{' enumerator_list '}'
+	| T_ENUM T_IDENTIFIER
 	;
 
 enumerator_list
@@ -247,13 +247,13 @@ enumerator_list
 	;
 
 enumerator
-	: IDENTIFIER
-	| IDENTIFIER '=' constant_expression
+	: T_IDENTIFIER
+	| T_IDENTIFIER '=' constant_expression
 	;
 
 type_qualifier
-	: CONST
-	| VOLATILE
+	: T_CONST
+	| T_VOLATILE
 	;
 
 declarator
@@ -262,7 +262,7 @@ declarator
 	;
 
 direct_declarator
-	: IDENTIFIER
+	: T_IDENTIFIER
 	| '(' declarator ')'
 	| direct_declarator '[' constant_expression ']'
 	| direct_declarator '[' ']'
@@ -286,7 +286,7 @@ type_qualifier_list
 
 parameter_type_list
 	: parameter_list
-	| parameter_list ',' ELLIPSIS
+	| parameter_list ',' T_ELLIPSIS
 	;
 
 parameter_list
@@ -301,8 +301,8 @@ parameter_declaration
 	;
 
 identifier_list
-	: IDENTIFIER
-	| identifier_list ',' IDENTIFIER
+	: T_IDENTIFIER
+	| identifier_list ',' T_IDENTIFIER
 	;
 
 type_name
@@ -349,9 +349,9 @@ statement
 	;
 
 labeled_statement
-	: IDENTIFIER ':' statement
-	| CASE constant_expression ':' statement
-	| DEFAULT ':' statement
+	: T_IDENTIFIER ':' statement
+	| T_CASE constant_expression ':' statement
+	| T_DEFAULT ':' statement
 	;
 
 compound_statement
@@ -377,24 +377,24 @@ expression_statement
 	;
 
 selection_statement
-	: IF '(' expression ')' statement
-	| IF '(' expression ')' statement ELSE statement
-	| SWITCH '(' expression ')' statement
+	: T_IF '(' expression ')' statement
+	| T_IF '(' expression ')' statement T_ELSE statement
+	| T_SWITCH '(' expression ')' statement
 	;
 
 iteration_statement
-	: WHILE '(' expression ')' statement
-	| DO statement WHILE '(' expression ')' ';'
-	| FOR '(' expression_statement expression_statement ')' statement
-	| FOR '(' expression_statement expression_statement expression ')' statement
+	: T_WHILE '(' expression ')' statement
+	| T_DO statement T_WHILE '(' expression ')' ';'
+	| T_FOR '(' expression_statement expression_statement ')' statement
+	| T_FOR '(' expression_statement expression_statement expression ')' statement
 	;
 
 jump_statement
-	: GOTO IDENTIFIER ';'
-	| CONTINUE ';'
-	| BREAK ';'
-	| RETURN ';'
-	| RETURN expression ';'
+	: T_GOTO T_IDENTIFIER ';'
+	| T_CONTINUE ';'
+	| T_BREAK ';'
+	| T_RETURN ';'
+	| T_RETURN expression ';'
 	;
 
 translation_unit
