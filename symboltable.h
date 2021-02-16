@@ -13,6 +13,9 @@ struct entry_s
 	char* lexeme;
 	double value;
 	int data_type;
+    int line;
+    int start;
+    int end;
 	struct entry_s* successor;
 };
 
@@ -44,9 +47,7 @@ uint32_t hash( char *lexeme )
 	size_t i;
 	uint32_t hash;
 
-	/* Apply jenkin's hash function
-	* https://en.wikipedia.org/wiki/Jenkins_hash_function#one-at-a-time
-	*/
+	
 	for ( hash = i = 0; i < strlen(lexeme); ++i ) {
         hash += lexeme[i];
         hash += ( hash << 10 );
@@ -60,7 +61,7 @@ uint32_t hash( char *lexeme )
 }
 
 /* Create an entry for a lexeme, token pair. This will be called from the insert function */
-entry_t *create_entry( char *lexeme, int value )
+entry_t *create_entry( char *lexeme, int value, int yylineno, int start, int end )
 {
 	entry_t *newentry;
 
@@ -75,7 +76,9 @@ entry_t *create_entry( char *lexeme, int value )
 
 	newentry->value = value;
 	newentry->successor = NULL;
-
+    newentry->line=yylineno;
+    newentry->start=start;
+    newentry->end=end;
 	return newentry;
 }
 
@@ -105,7 +108,7 @@ entry_t* search( entry_t** hash_table_ptr, char* lexeme )
 }
 
 /* Insert an entry into a hash table. */
-entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int value )
+entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int value, int lineno, int start, int end)
 {
 	entry_t* finder = search( hash_table_ptr, lexeme );
 	if( finder != NULL) // If lexeme already exists, don't insert, return
@@ -116,7 +119,7 @@ entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int value )
 	entry_t* head = NULL;
 
 	idx = hash( lexeme ); // Get the index for this lexeme based on the hash function
-	newentry = create_entry( lexeme, value ); // Create an entry using the <lexeme, token> pair
+	newentry = create_entry( lexeme, value, lineno, start, end); // Create an entry using the <lexeme, token> pair
 
 	if(newentry == NULL) // In case there was some error while executing create_entry()
 	{
@@ -144,7 +147,7 @@ void display(entry_t** hash_table_ptr)
 	int i;
 	entry_t* traverser;
     printf("\n====================================================\n");
-    printf(" %-20s %-20s %-20s\n","lexeme","value","data-type");
+    printf(" %-20s %-20s %-20s %-20s %-20s %-20s\n","lexeme","value","data-type","lineno","start","end");
     printf("====================================================\n");
 
 	for( i=0; i < HASH_TABLE_SIZE; i++)
@@ -153,7 +156,7 @@ void display(entry_t** hash_table_ptr)
 
 		while( traverser != NULL)
 		{
-			printf(" %-20s %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type);
+			printf(" %-20s %-20d %-20d %-20d %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type, traverser->lineno, traverser->start,traverser->end);
 			traverser = traverser->successor;
 		}
 	}

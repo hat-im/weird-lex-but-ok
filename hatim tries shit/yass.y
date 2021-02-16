@@ -434,7 +434,6 @@ function_definition
 int main(int argc, char *argv[])
 {
 	symbol_table = create_table();
-	constant_table = create_table();
 
 	yyin = fopen(argv[1], "r");
 

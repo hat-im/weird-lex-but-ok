@@ -146,7 +146,7 @@ void display(entry_t** hash_table_ptr)
 	int i;
 	entry_t* traverser;
     printf("\n====================================================\n");
-    printf(" %-20s %-20s %-20s\n","lexeme","value","data-type");
+    printf(" %-20s %-20s %-20s %-20s %-20s %-20s\n","lexeme","value","data-type","lineno","start","end");
     printf("====================================================\n");
 
 	for( i=0; i < HASH_TABLE_SIZE; i++)
@@ -155,7 +155,7 @@ void display(entry_t** hash_table_ptr)
 
 		while( traverser != NULL)
 		{
-			printf(" %-20s %-20d %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type,traverser->line,traverser->start,traverser->end);
+			printf(" %-20s %-20d %-20d %-20d %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type, traverser->line, traverser->start,traverser->end);
 			traverser = traverser->successor;
 		}
 	}
