@@ -3,6 +3,7 @@
 #include "y.tab.h"
 
 int count();
+int current_dtype;
 %}
 
 D               [0-9]
@@ -11,12 +12,12 @@ A               {D}|{L}|_
 H               [a-fA-F0-9]
 
 %%
-"int"               {count(); return(T_INT);}
-"char"              {count(); return(T_CHAR);}
-"double"            {count(); return(T_DOUBLE);}
-"float"             {count(); return(T_FLOAT);}
-"long"              {count(); return(T_LONG);}
-"short"             {count(); return(T_SHORT);}
+"int"               {count(); current_dtype= 4; return(T_INT);}
+"char"              {count(); current_dtype= 1; return(T_CHAR);}
+"double"            {count(); current_dtype= 8; return(T_DOUBLE);}
+"float"             {count(); current_dtype= 4; return(T_FLOAT);}
+"long"              {count(); current_dtype= 8; return(T_LONG);}
+"short"             {count(); current_dtype= 2; return(T_SHORT);}
 "unsigned"          {count(); return(T_UNSIGNED);}
 "const"             {count(); return(T_CONST);}
 
@@ -39,7 +40,7 @@ H               [a-fA-F0-9]
 "typedef"           {count(); return(T_TYPEDEF);}
 "void"              {count(); return(T_VOID);}
 
-({L}|_){A}*       {int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(check_type());}
+({L}|_){A}*       {int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(current_dtype);}
 
 0[xX]{H}+           {count(); return(T_CONSTANT);}
 {D}+                {count(); return(T_CONSTANT);}

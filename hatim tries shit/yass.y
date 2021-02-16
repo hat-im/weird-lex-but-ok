@@ -6,14 +6,13 @@
 	entry_t** symbol_table;
 
 	int yyerror(char *msg);
-	extern int current_dtype;
 %}
 
 %token T_IDENTIFIER T_CONSTANT T_STRING_LITERAL T_SIZEOF
 %token T_PTR_OP T_INC_OP T_DEC_OP T_LEFT_OP T_RIGHT_OP T_LE_OP T_GE_OP T_EQ_OP T_NE_OP
 %token T_AND_OP T_OR_OP T_MUL_ASSIGN T_DIV_ASSIGN T_MOD_ASSIGN T_ADD_ASSIGN
 %token T_SUB_ASSIGN T_LEFT_ASSIGN T_RIGHT_ASSIGN T_AND_ASSIGN
-%token T_XOR_ASSIGN T_OR_ASSIGN T_TYPE_NAME
+%token T_XOR_ASSIGN T_OR_ASSIGN T_TYPE_NAME T_ENUM
 
 %token T_TYPEDEF T_EXTERN T_STATIC T_AUTO T_REGISTER
 %token T_CHAR T_SHORT T_INT T_LONG T_SIGNED T_UNSIGNED T_FLOAT T_DOUBLE T_CONST T_VOLATILE T_VOID
@@ -196,13 +195,13 @@ storage_class_specifier
 	;
 
 type_specifier
-	: T_VOID	{current_dtype=0;}
-	| T_CHAR	{current_dtype=1;}
-	| T_SHORT	{current_dtype=2;}
-	| T_INT		{current_dtype=4;}
-	| T_LONG	{current_dtype=8;}
-	| T_FLOAT	{current_dtype=4;}
-	| T_DOUBLE	{current_dtype=8;}
+	: T_VOID
+	| T_CHAR
+	| T_SHORT
+	| T_INT
+	| T_LONG
+	| T_FLOAT
+	| T_DOUBLE
 	| T_SIGNED	
 	| T_UNSIGNED	
 	| struct_or_union_specifier
@@ -421,9 +420,9 @@ external_declaration
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement {current_dtype=-1;}
-	| declaration_specifiers declarator compound_statement	{current_dtype=-1;}
-	| declarator declaration_list compound_statement	{current_dtype=-1;}
+	: declaration_specifiers declarator declaration_list compound_statement
+	| declaration_specifiers declarator compound_statement
+	| declarator declaration_list compound_statement
 	| declarator compound_statement
 	;
 
