@@ -75,26 +75,26 @@ extern int yydebug;
     T_XOR_ASSIGN = 281,
     T_OR_ASSIGN = 282,
     T_TYPE_NAME = 283,
-    T_ENUM = 284,
-    T_ELLIPSIS = 285,
-    T_TYPEDEF = 286,
-    T_EXTERN = 287,
-    T_STATIC = 288,
-    T_AUTO = 289,
-    T_REGISTER = 290,
-    T_CHAR = 291,
-    T_SHORT = 292,
-    T_INT = 293,
-    T_LONG = 294,
-    T_SIGNED = 295,
-    T_UNSIGNED = 296,
-    T_FLOAT = 297,
-    T_DOUBLE = 298,
-    T_CONST = 299,
-    T_VOLATILE = 300,
-    T_VOID = 301,
-    T_STRUCT = 302,
-    T_UNION = 303,
+    T_TYPEDEF = 284,
+    T_EXTERN = 285,
+    T_STATIC = 286,
+    T_AUTO = 287,
+    T_REGISTER = 288,
+    T_CHAR = 289,
+    T_SHORT = 290,
+    T_INT = 291,
+    T_LONG = 292,
+    T_SIGNED = 293,
+    T_UNSIGNED = 294,
+    T_FLOAT = 295,
+    T_DOUBLE = 296,
+    T_CONST = 297,
+    T_VOLATILE = 298,
+    T_VOID = 299,
+    T_STRUCT = 300,
+    T_UNION = 301,
+    T_ENUM = 302,
+    T_ELLIPSIS = 303,
     T_CASE = 304,
     T_DEFAULT = 305,
     T_IF = 306,
@@ -137,26 +137,26 @@ extern int yydebug;
 #define T_XOR_ASSIGN 281
 #define T_OR_ASSIGN 282
 #define T_TYPE_NAME 283
-#define T_ENUM 284
-#define T_ELLIPSIS 285
-#define T_TYPEDEF 286
-#define T_EXTERN 287
-#define T_STATIC 288
-#define T_AUTO 289
-#define T_REGISTER 290
-#define T_CHAR 291
-#define T_SHORT 292
-#define T_INT 293
-#define T_LONG 294
-#define T_SIGNED 295
-#define T_UNSIGNED 296
-#define T_FLOAT 297
-#define T_DOUBLE 298
-#define T_CONST 299
-#define T_VOLATILE 300
-#define T_VOID 301
-#define T_STRUCT 302
-#define T_UNION 303
+#define T_TYPEDEF 284
+#define T_EXTERN 285
+#define T_STATIC 286
+#define T_AUTO 287
+#define T_REGISTER 288
+#define T_CHAR 289
+#define T_SHORT 290
+#define T_INT 291
+#define T_LONG 292
+#define T_SIGNED 293
+#define T_UNSIGNED 294
+#define T_FLOAT 295
+#define T_DOUBLE 296
+#define T_CONST 297
+#define T_VOLATILE 298
+#define T_VOID 299
+#define T_STRUCT 300
+#define T_UNION 301
+#define T_ENUM 302
+#define T_ELLIPSIS 303
 #define T_CASE 304
 #define T_DEFAULT 305
 #define T_IF 306

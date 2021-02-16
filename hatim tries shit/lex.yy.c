@@ -580,9 +580,8 @@ char *yytext;
 #include "y.tab.h"
 
 int count();
-int current_dtype;
+#line 584 "lex.yy.c"
 #line 585 "lex.yy.c"
-#line 586 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -799,9 +798,9 @@ YY_DECL
 		}
 
 	{
-#line 14 "lex_looper.l"
+#line 13 "lex_looper.l"
 
-#line 805 "lex.yy.c"
+#line 804 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -860,419 +859,419 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 15 "lex_looper.l"
-{count(); current_dtype= 4; return(T_INT);}
+#line 14 "lex_looper.l"
+{count(); return(T_INT);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 16 "lex_looper.l"
-{count(); current_dtype= 1; return(T_CHAR);}
+#line 15 "lex_looper.l"
+{count(); return(T_CHAR);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 17 "lex_looper.l"
-{count(); current_dtype= 8; return(T_DOUBLE);}
+#line 16 "lex_looper.l"
+{count(); return(T_DOUBLE);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 18 "lex_looper.l"
-{count(); current_dtype= 4; return(T_FLOAT);}
+#line 17 "lex_looper.l"
+{count(); return(T_FLOAT);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 19 "lex_looper.l"
-{count(); current_dtype= 8; return(T_LONG);}
+#line 18 "lex_looper.l"
+{count(); return(T_LONG);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 20 "lex_looper.l"
-{count(); current_dtype= 2; return(T_SHORT);}
+#line 19 "lex_looper.l"
+{count(); return(T_SHORT);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 21 "lex_looper.l"
+#line 20 "lex_looper.l"
 {count(); return(T_UNSIGNED);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 22 "lex_looper.l"
+#line 21 "lex_looper.l"
 {count(); return(T_CONST);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 24 "lex_looper.l"
+#line 23 "lex_looper.l"
 {count(); return(T_FOR);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 25 "lex_looper.l"
+#line 24 "lex_looper.l"
 {count(); return(T_WHILE);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 26 "lex_looper.l"
+#line 25 "lex_looper.l"
 {count(); return(T_DO);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 27 "lex_looper.l"
+#line 26 "lex_looper.l"
 {count(); return(T_IF);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 28 "lex_looper.l"
+#line 27 "lex_looper.l"
 {count(); return(T_ELSE);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 29 "lex_looper.l"
+#line 28 "lex_looper.l"
 {count(); return(T_SWITCH);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 30 "lex_looper.l"
+#line 29 "lex_looper.l"
 {count(); return(T_CASE);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 31 "lex_looper.l"
+#line 30 "lex_looper.l"
 {count(); return(T_DEFAULT);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 32 "lex_looper.l"
+#line 31 "lex_looper.l"
 {count(); return(T_BREAK);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 33 "lex_looper.l"
+#line 32 "lex_looper.l"
 {count(); return(T_CONTINUE);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 35 "lex_looper.l"
+#line 34 "lex_looper.l"
 {comment();}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 36 "lex_looper.l"
+#line 35 "lex_looper.l"
 {count(); return(T_GOTO);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 37 "lex_looper.l"
+#line 36 "lex_looper.l"
 {count(); return(T_RETURN);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 38 "lex_looper.l"
+#line 37 "lex_looper.l"
 {count(); return(T_STATIC);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 39 "lex_looper.l"
+#line 38 "lex_looper.l"
 {count(); return(T_STRUCT);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 40 "lex_looper.l"
+#line 39 "lex_looper.l"
 {count(); return(T_TYPEDEF);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 41 "lex_looper.l"
+#line 40 "lex_looper.l"
 {count(); return(T_VOID);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 43 "lex_looper.l"
-{int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(current_dtype);}
+#line 42 "lex_looper.l"
+{insert(symbol_table, yytext, check_type(), yylineno, count(), count()+strlen(yytext)); return(check_type());}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 45 "lex_looper.l"
+#line 44 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 46 "lex_looper.l"
+#line 45 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
-#line 47 "lex_looper.l"
+#line 46 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 30:
 /* rule 30 can match eol */
 YY_RULE_SETUP
-#line 48 "lex_looper.l"
+#line 47 "lex_looper.l"
 {yylineno++;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 50 "lex_looper.l"
+#line 49 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 51 "lex_looper.l"
+#line 50 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 52 "lex_looper.l"
+#line 51 "lex_looper.l"
 {count(); return(T_CONSTANT);}
 	YY_BREAK
 case 34:
 /* rule 34 can match eol */
 YY_RULE_SETUP
-#line 54 "lex_looper.l"
+#line 53 "lex_looper.l"
 {count(); return(T_STRING_LITERAL);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 56 "lex_looper.l"
+#line 55 "lex_looper.l"
 {count(); return(T_RIGHT_ASSIGN);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 57 "lex_looper.l"
+#line 56 "lex_looper.l"
 {count(); return(T_LEFT_ASSIGN);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 58 "lex_looper.l"
+#line 57 "lex_looper.l"
 {count(); return(T_ADD_ASSIGN);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 59 "lex_looper.l"
+#line 58 "lex_looper.l"
 {count(); return(T_SUB_ASSIGN);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 60 "lex_looper.l"
+#line 59 "lex_looper.l"
 {count(); return(T_MUL_ASSIGN);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 61 "lex_looper.l"
+#line 60 "lex_looper.l"
 {count(); return(T_DIV_ASSIGN);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 62 "lex_looper.l"
+#line 61 "lex_looper.l"
 {count(); return(T_MOD_ASSIGN);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 63 "lex_looper.l"
+#line 62 "lex_looper.l"
 {count(); return(T_AND_ASSIGN);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 64 "lex_looper.l"
+#line 63 "lex_looper.l"
 {count(); return(T_XOR_ASSIGN);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 65 "lex_looper.l"
+#line 64 "lex_looper.l"
 {count(); return(T_OR_ASSIGN);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 66 "lex_looper.l"
+#line 65 "lex_looper.l"
 {count(); return(T_RIGHT_OP);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 67 "lex_looper.l"
+#line 66 "lex_looper.l"
 {count(); return(T_LEFT_OP);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 68 "lex_looper.l"
+#line 67 "lex_looper.l"
 {count(); return(T_INC_OP);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 69 "lex_looper.l"
+#line 68 "lex_looper.l"
 {count(); return(T_DEC_OP);}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 70 "lex_looper.l"
+#line 69 "lex_looper.l"
 {count(); return(T_PTR_OP);}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 71 "lex_looper.l"
+#line 70 "lex_looper.l"
 {count(); return(T_AND_OP);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 72 "lex_looper.l"
+#line 71 "lex_looper.l"
 {count(); return(T_OR_OP);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 73 "lex_looper.l"
+#line 72 "lex_looper.l"
 {count(); return(T_LE_OP);}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 74 "lex_looper.l"
+#line 73 "lex_looper.l"
 {count(); return(T_GE_OP);}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 75 "lex_looper.l"
+#line 74 "lex_looper.l"
 {count(); return(T_EQ_OP);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 76 "lex_looper.l"
+#line 75 "lex_looper.l"
 {count(); return(T_NE_OP);}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 77 "lex_looper.l"
+#line 76 "lex_looper.l"
 {count(); return(';');}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 78 "lex_looper.l"
+#line 77 "lex_looper.l"
 {count(); return('{');}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 79 "lex_looper.l"
+#line 78 "lex_looper.l"
 {count(); return('}');}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 80 "lex_looper.l"
+#line 79 "lex_looper.l"
 {count(); return(',');}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 81 "lex_looper.l"
+#line 80 "lex_looper.l"
 {count(); return(':');}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 82 "lex_looper.l"
+#line 81 "lex_looper.l"
 {count(); return('=');}
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 83 "lex_looper.l"
+#line 82 "lex_looper.l"
 {count(); return('(');}
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 84 "lex_looper.l"
+#line 83 "lex_looper.l"
 {count(); return(')');}
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 85 "lex_looper.l"
+#line 84 "lex_looper.l"
 {count(); return('[');}
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 86 "lex_looper.l"
+#line 85 "lex_looper.l"
 {count(); return(']');}
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 87 "lex_looper.l"
+#line 86 "lex_looper.l"
 {count(); return('.');}
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 88 "lex_looper.l"
+#line 87 "lex_looper.l"
 {count(); return('&');}
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 89 "lex_looper.l"
+#line 88 "lex_looper.l"
 {count(); return('!');}
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 90 "lex_looper.l"
+#line 89 "lex_looper.l"
 {count(); return('~');}
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 91 "lex_looper.l"
+#line 90 "lex_looper.l"
 {count(); return('-');}
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 92 "lex_looper.l"
+#line 91 "lex_looper.l"
 {count(); return('+');}
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 93 "lex_looper.l"
+#line 92 "lex_looper.l"
 {count(); return('*');}
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 94 "lex_looper.l"
+#line 93 "lex_looper.l"
 {count(); return('/');}
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 95 "lex_looper.l"
+#line 94 "lex_looper.l"
 {count(); return('%');}
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 96 "lex_looper.l"
+#line 95 "lex_looper.l"
 {count(); return('<');}
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 97 "lex_looper.l"
+#line 96 "lex_looper.l"
 {count(); return('>');}
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 98 "lex_looper.l"
+#line 97 "lex_looper.l"
 {count(); return('^');}
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 99 "lex_looper.l"
+#line 98 "lex_looper.l"
 {count(); return('|');}
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 100 "lex_looper.l"
+#line 99 "lex_looper.l"
 {count(); return('?');}
 	YY_BREAK
 case 80:
 /* rule 80 can match eol */
 YY_RULE_SETUP
-#line 102 "lex_looper.l"
+#line 101 "lex_looper.l"
 {count();}
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 103 "lex_looper.l"
+#line 102 "lex_looper.l"
 {/* ignore bad characters */}
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 105 "lex_looper.l"
+#line 104 "lex_looper.l"
 ECHO;
 	YY_BREAK
-#line 1276 "lex.yy.c"
+#line 1275 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2277,7 +2276,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 105 "lex_looper.l"
+#line 104 "lex_looper.l"
 
 
 yywrap()
@@ -2321,3 +2320,7 @@ int count()
 }
 
 
+int check_type()
+{
+    return(T_IDENTIFIER);
+}
