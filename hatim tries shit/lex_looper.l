@@ -4,7 +4,6 @@
 #include "symboltable.h"
 
 void count();
-entry_t** symbol_table = create_table();
 %}
 
 D               [0-9]
@@ -149,4 +148,18 @@ int count()
 int check_type()
 {
     return(T_IDENTIFIER);
+}
+
+int main (int argc, char *argv[]){
+    
+    entry_t** symbol_table = create_table();
+	yyin = fopen(argv[1], "r");
+	flag = yyparse();
+	fclose(yyin);
+
+    printf("Parsing finished!");
+	
+	display(symbol_table);
+	
+	return flag;
 }
