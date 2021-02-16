@@ -1,9 +1,8 @@
 %{
 #include <stdio.h>
 #include "y.tab.h"
-#include "symboltable.h"
 
-void count();
+int count();
 %}
 
 D               [0-9]
@@ -40,7 +39,7 @@ H               [a-fA-F0-9]
 "typedef"           {count(); return(T_TYPEDEF);}
 "void"              {count(); return(T_VOID);}
 
-({L}|_){A}*       {insert(symbol_table, yytext, check_type(), count(), count()+strlen(yytext)); return(check_type());}
+({L}|_){A}*       {int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(check_type());}
 
 0[xX]{H}+           {count(); return(T_CONSTANT);}
 {D}+                {count(); return(T_CONSTANT);}
@@ -144,8 +143,3 @@ int count()
     return column;
 }
 
-
-int check_type()
-{
-    return(T_IDENTIFIER);
-}

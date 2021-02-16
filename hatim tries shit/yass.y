@@ -6,6 +6,7 @@
 	entry_t** symbol_table;
 
 	int yyerror(char *msg);
+	extern int current_dtype;
 %}
 
 %token T_IDENTIFIER T_CONSTANT T_STRING_LITERAL T_SIZEOF
@@ -16,7 +17,7 @@
 
 %token T_TYPEDEF T_EXTERN T_STATIC T_AUTO T_REGISTER
 %token T_CHAR T_SHORT T_INT T_LONG T_SIGNED T_UNSIGNED T_FLOAT T_DOUBLE T_CONST T_VOLATILE T_VOID
-%token T_STRUCT T_UNION T_ENUM T_ELLIPSIS
+%token T_STRUCT T_UNION 
 
 %token T_CASE T_DEFAULT T_IF T_ELSE T_SWITCH T_WHILE T_DO T_FOR T_GOTO T_CONTINUE T_BREAK T_RETURN
 
@@ -195,15 +196,15 @@ storage_class_specifier
 	;
 
 type_specifier
-	: T_VOID
-	| T_CHAR
-	| T_SHORT
-	| T_INT
-	| T_LONG
-	| T_FLOAT
-	| T_DOUBLE
-	| T_SIGNED
-	| T_UNSIGNED
+	: T_VOID	{current_dtype=0;}
+	| T_CHAR	{current_dtype=1;}
+	| T_SHORT	{current_dtype=2;}
+	| T_INT		{current_dtype=4;}
+	| T_LONG	{current_dtype=8;}
+	| T_FLOAT	{current_dtype=4;}
+	| T_DOUBLE	{current_dtype=8;}
+	| T_SIGNED	
+	| T_UNSIGNED	
 	| struct_or_union_specifier
 	| enum_specifier
 	| T_TYPE_NAME
@@ -420,9 +421,9 @@ external_declaration
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement
-	| declaration_specifiers declarator compound_statement
-	| declarator declaration_list compound_statement
+	: declaration_specifiers declarator declaration_list compound_statement {current_dtype=-1;}
+	| declaration_specifiers declarator compound_statement	{current_dtype=-1;}
+	| declarator declaration_list compound_statement	{current_dtype=-1;}
 	| declarator compound_statement
 	;
 
