@@ -26,7 +26,7 @@ entry_t** create_table()
 	entry_t** hash_table_ptr = NULL; // declare a pointer
 
 	/* Allocate memory for a hashtable array of size HASH_TABLE_SIZE */
-	if( ( hash_table_ptr =malloc( sizeof( entry_t* ) * HASH_TABLE_SIZE ) ) == NULL )
+	if( ( hash_table_ptr = malloc( sizeof( entry_t* ) * HASH_TABLE_SIZE ) ) == NULL )
     	return NULL;
 
 	int i;
@@ -146,7 +146,7 @@ void display(entry_t** hash_table_ptr)
 	int i;
 	entry_t* traverser;
     printf("\n====================================================\n");
-    printf(" %-20s %-20s %-20s %-20s %-20s %-20s\n","lexeme","value","data-type","line", "start", "end");
+    printf(" %-20s %-20s %-20s %-20s %-20s %-20s\n","lexeme","value","data-type","lineno","start","end");
     printf("====================================================\n");
 
 	for( i=0; i < HASH_TABLE_SIZE; i++)
@@ -155,7 +155,7 @@ void display(entry_t** hash_table_ptr)
 
 		while( traverser != NULL)
 		{
-			printf(" %-20s %-20d %-20d %-20d %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type,traverser->line,traverser->start,traverser->end);
+			printf(" %-20s %-20d %-20d %-20d %-20d %-20d \n", traverser->lexeme, (int)traverser->value, traverser->data_type, traverser->line, traverser->start,traverser->end);
 			traverser = traverser->successor;
 		}
 	}

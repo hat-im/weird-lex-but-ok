@@ -334,26 +334,26 @@ Terminals, with rules where they appear
     T_XOR_ASSIGN (281) 70
     T_OR_ASSIGN (282) 71
     T_TYPE_NAME (283) 103
-    T_TYPEDEF (284) 87
-    T_EXTERN (285) 88
-    T_STATIC (286) 89
-    T_AUTO (287) 90
-    T_REGISTER (288) 91
-    T_CHAR (289) 93
-    T_SHORT (290) 94
-    T_INT (291) 95
-    T_LONG (292) 96
-    T_SIGNED (293) 99
-    T_UNSIGNED (294) 100
-    T_FLOAT (295) 97
-    T_DOUBLE (296) 98
-    T_CONST (297) 128
-    T_VOLATILE (298) 129
-    T_VOID (299) 92
-    T_STRUCT (300) 107
-    T_UNION (301) 108
-    T_ENUM (302) 121 122 123
-    T_ELLIPSIS (303) 146
+    T_ENUM (284) 121 122 123
+    T_ELLIPSIS (285) 146
+    T_TYPEDEF (286) 87
+    T_EXTERN (287) 88
+    T_STATIC (288) 89
+    T_AUTO (289) 90
+    T_REGISTER (290) 91
+    T_CHAR (291) 93
+    T_SHORT (292) 94
+    T_INT (293) 95
+    T_LONG (294) 96
+    T_SIGNED (295) 99
+    T_UNSIGNED (296) 100
+    T_FLOAT (297) 97
+    T_DOUBLE (298) 98
+    T_CONST (299) 128
+    T_VOLATILE (300) 129
+    T_VOID (301) 92
+    T_STRUCT (302) 107
+    T_UNION (303) 108
     T_CASE (304) 180
     T_DEFAULT (305) 181
     T_IF (306) 192 193
@@ -570,25 +570,25 @@ State 0
 
     T_IDENTIFIER  shift, and go to state 1
     T_TYPE_NAME   shift, and go to state 2
-    T_TYPEDEF     shift, and go to state 3
-    T_EXTERN      shift, and go to state 4
-    T_STATIC      shift, and go to state 5
-    T_AUTO        shift, and go to state 6
-    T_REGISTER    shift, and go to state 7
-    T_CHAR        shift, and go to state 8
-    T_SHORT       shift, and go to state 9
-    T_INT         shift, and go to state 10
-    T_LONG        shift, and go to state 11
-    T_SIGNED      shift, and go to state 12
-    T_UNSIGNED    shift, and go to state 13
-    T_FLOAT       shift, and go to state 14
-    T_DOUBLE      shift, and go to state 15
-    T_CONST       shift, and go to state 16
-    T_VOLATILE    shift, and go to state 17
-    T_VOID        shift, and go to state 18
-    T_STRUCT      shift, and go to state 19
-    T_UNION       shift, and go to state 20
-    T_ENUM        shift, and go to state 21
+    T_ENUM        shift, and go to state 3
+    T_TYPEDEF     shift, and go to state 4
+    T_EXTERN      shift, and go to state 5
+    T_STATIC      shift, and go to state 6
+    T_AUTO        shift, and go to state 7
+    T_REGISTER    shift, and go to state 8
+    T_CHAR        shift, and go to state 9
+    T_SHORT       shift, and go to state 10
+    T_INT         shift, and go to state 11
+    T_LONG        shift, and go to state 12
+    T_SIGNED      shift, and go to state 13
+    T_UNSIGNED    shift, and go to state 14
+    T_FLOAT       shift, and go to state 15
+    T_DOUBLE      shift, and go to state 16
+    T_CONST       shift, and go to state 17
+    T_VOLATILE    shift, and go to state 18
+    T_VOID        shift, and go to state 19
+    T_STRUCT      shift, and go to state 20
+    T_UNION       shift, and go to state 21
     '('           shift, and go to state 22
     '*'           shift, and go to state 23
 
@@ -624,138 +624,138 @@ State 2
 
 State 3
 
-   87 storage_class_specifier: T_TYPEDEF .
-
-    $default  reduce using rule 87 (storage_class_specifier)
-
-
-State 4
-
-   88 storage_class_specifier: T_EXTERN .
-
-    $default  reduce using rule 88 (storage_class_specifier)
-
-
-State 5
-
-   89 storage_class_specifier: T_STATIC .
-
-    $default  reduce using rule 89 (storage_class_specifier)
-
-
-State 6
-
-   90 storage_class_specifier: T_AUTO .
-
-    $default  reduce using rule 90 (storage_class_specifier)
-
-
-State 7
-
-   91 storage_class_specifier: T_REGISTER .
-
-    $default  reduce using rule 91 (storage_class_specifier)
-
-
-State 8
-
-   93 type_specifier: T_CHAR .
-
-    $default  reduce using rule 93 (type_specifier)
-
-
-State 9
-
-   94 type_specifier: T_SHORT .
-
-    $default  reduce using rule 94 (type_specifier)
-
-
-State 10
-
-   95 type_specifier: T_INT .
-
-    $default  reduce using rule 95 (type_specifier)
-
-
-State 11
-
-   96 type_specifier: T_LONG .
-
-    $default  reduce using rule 96 (type_specifier)
-
-
-State 12
-
-   99 type_specifier: T_SIGNED .
-
-    $default  reduce using rule 99 (type_specifier)
-
-
-State 13
-
-  100 type_specifier: T_UNSIGNED .
-
-    $default  reduce using rule 100 (type_specifier)
-
-
-State 14
-
-   97 type_specifier: T_FLOAT .
-
-    $default  reduce using rule 97 (type_specifier)
-
-
-State 15
-
-   98 type_specifier: T_DOUBLE .
-
-    $default  reduce using rule 98 (type_specifier)
-
-
-State 16
-
-  128 type_qualifier: T_CONST .
-
-    $default  reduce using rule 128 (type_qualifier)
-
-
-State 17
-
-  129 type_qualifier: T_VOLATILE .
-
-    $default  reduce using rule 129 (type_qualifier)
-
-
-State 18
-
-   92 type_specifier: T_VOID .
-
-    $default  reduce using rule 92 (type_specifier)
-
-
-State 19
-
-  107 struct_or_union: T_STRUCT .
-
-    $default  reduce using rule 107 (struct_or_union)
-
-
-State 20
-
-  108 struct_or_union: T_UNION .
-
-    $default  reduce using rule 108 (struct_or_union)
-
-
-State 21
-
   121 enum_specifier: T_ENUM . '{' enumerator_list '}'
   122               | T_ENUM . T_IDENTIFIER '{' enumerator_list '}'
   123               | T_ENUM . T_IDENTIFIER
 
     T_IDENTIFIER  shift, and go to state 38
     '{'           shift, and go to state 39
+
+
+State 4
+
+   87 storage_class_specifier: T_TYPEDEF .
+
+    $default  reduce using rule 87 (storage_class_specifier)
+
+
+State 5
+
+   88 storage_class_specifier: T_EXTERN .
+
+    $default  reduce using rule 88 (storage_class_specifier)
+
+
+State 6
+
+   89 storage_class_specifier: T_STATIC .
+
+    $default  reduce using rule 89 (storage_class_specifier)
+
+
+State 7
+
+   90 storage_class_specifier: T_AUTO .
+
+    $default  reduce using rule 90 (storage_class_specifier)
+
+
+State 8
+
+   91 storage_class_specifier: T_REGISTER .
+
+    $default  reduce using rule 91 (storage_class_specifier)
+
+
+State 9
+
+   93 type_specifier: T_CHAR .
+
+    $default  reduce using rule 93 (type_specifier)
+
+
+State 10
+
+   94 type_specifier: T_SHORT .
+
+    $default  reduce using rule 94 (type_specifier)
+
+
+State 11
+
+   95 type_specifier: T_INT .
+
+    $default  reduce using rule 95 (type_specifier)
+
+
+State 12
+
+   96 type_specifier: T_LONG .
+
+    $default  reduce using rule 96 (type_specifier)
+
+
+State 13
+
+   99 type_specifier: T_SIGNED .
+
+    $default  reduce using rule 99 (type_specifier)
+
+
+State 14
+
+  100 type_specifier: T_UNSIGNED .
+
+    $default  reduce using rule 100 (type_specifier)
+
+
+State 15
+
+   97 type_specifier: T_FLOAT .
+
+    $default  reduce using rule 97 (type_specifier)
+
+
+State 16
+
+   98 type_specifier: T_DOUBLE .
+
+    $default  reduce using rule 98 (type_specifier)
+
+
+State 17
+
+  128 type_qualifier: T_CONST .
+
+    $default  reduce using rule 128 (type_qualifier)
+
+
+State 18
+
+  129 type_qualifier: T_VOLATILE .
+
+    $default  reduce using rule 129 (type_qualifier)
+
+
+State 19
+
+   92 type_specifier: T_VOID .
+
+    $default  reduce using rule 92 (type_specifier)
+
+
+State 20
+
+  107 struct_or_union: T_STRUCT .
+
+    $default  reduce using rule 107 (struct_or_union)
+
+
+State 21
+
+  108 struct_or_union: T_UNION .
+
+    $default  reduce using rule 108 (struct_or_union)
 
 
 State 22
@@ -778,8 +778,8 @@ State 23
   141        | '*' . pointer
   142        | '*' . type_qualifier_list pointer
 
-    T_CONST     shift, and go to state 16
-    T_VOLATILE  shift, and go to state 17
+    T_CONST     shift, and go to state 17
+    T_VOLATILE  shift, and go to state 18
     '*'         shift, and go to state 23
 
     $default  reduce using rule 139 (pointer)
@@ -821,25 +821,25 @@ State 26
    78                       | storage_class_specifier . declaration_specifiers
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     $default  reduce using rule 77 (declaration_specifiers)
 
@@ -858,25 +858,25 @@ State 27
    80                       | type_specifier . declaration_specifiers
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     $default  reduce using rule 79 (declaration_specifiers)
 
@@ -919,25 +919,25 @@ State 31
    82                       | type_qualifier . declaration_specifiers
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     $default  reduce using rule 81 (declaration_specifiers)
 
@@ -956,25 +956,25 @@ State 32
   211                    | declarator . compound_statement
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '{'          shift, and go to state 53
 
     declaration                go to state 54
@@ -1022,25 +1022,25 @@ State 35
     $end          shift, and go to state 61
     T_IDENTIFIER  shift, and go to state 1
     T_TYPE_NAME   shift, and go to state 2
-    T_TYPEDEF     shift, and go to state 3
-    T_EXTERN      shift, and go to state 4
-    T_STATIC      shift, and go to state 5
-    T_AUTO        shift, and go to state 6
-    T_REGISTER    shift, and go to state 7
-    T_CHAR        shift, and go to state 8
-    T_SHORT       shift, and go to state 9
-    T_INT         shift, and go to state 10
-    T_LONG        shift, and go to state 11
-    T_SIGNED      shift, and go to state 12
-    T_UNSIGNED    shift, and go to state 13
-    T_FLOAT       shift, and go to state 14
-    T_DOUBLE      shift, and go to state 15
-    T_CONST       shift, and go to state 16
-    T_VOLATILE    shift, and go to state 17
-    T_VOID        shift, and go to state 18
-    T_STRUCT      shift, and go to state 19
-    T_UNION       shift, and go to state 20
-    T_ENUM        shift, and go to state 21
+    T_ENUM        shift, and go to state 3
+    T_TYPEDEF     shift, and go to state 4
+    T_EXTERN      shift, and go to state 5
+    T_STATIC      shift, and go to state 6
+    T_AUTO        shift, and go to state 7
+    T_REGISTER    shift, and go to state 8
+    T_CHAR        shift, and go to state 9
+    T_SHORT       shift, and go to state 10
+    T_INT         shift, and go to state 11
+    T_LONG        shift, and go to state 12
+    T_SIGNED      shift, and go to state 13
+    T_UNSIGNED    shift, and go to state 14
+    T_FLOAT       shift, and go to state 15
+    T_DOUBLE      shift, and go to state 16
+    T_CONST       shift, and go to state 17
+    T_VOLATILE    shift, and go to state 18
+    T_VOID        shift, and go to state 19
+    T_STRUCT      shift, and go to state 20
+    T_UNION       shift, and go to state 21
     '('           shift, and go to state 22
     '*'           shift, and go to state 23
 
@@ -1120,8 +1120,8 @@ State 43
   142        | '*' type_qualifier_list . pointer
   144 type_qualifier_list: type_qualifier_list . type_qualifier
 
-    T_CONST     shift, and go to state 16
-    T_VOLATILE  shift, and go to state 17
+    T_CONST     shift, and go to state 17
+    T_VOLATILE  shift, and go to state 18
     '*'         shift, and go to state 23
 
     $default  reduce using rule 140 (pointer)
@@ -1161,25 +1161,25 @@ State 47
   209                    | declaration_specifiers declarator . compound_statement
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '='          shift, and go to state 72
     '{'          shift, and go to state 53
 
@@ -1226,20 +1226,20 @@ State 51
   105 struct_or_union_specifier: struct_or_union '{' . struct_declaration_list '}'
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     type_specifier             go to state 76
     struct_or_union_specifier  go to state 28
@@ -1272,25 +1272,25 @@ State 53
     T_INC_OP          shift, and go to state 85
     T_DEC_OP          shift, and go to state 86
     T_TYPE_NAME       shift, and go to state 2
-    T_TYPEDEF         shift, and go to state 3
-    T_EXTERN          shift, and go to state 4
-    T_STATIC          shift, and go to state 5
-    T_AUTO            shift, and go to state 6
-    T_REGISTER        shift, and go to state 7
-    T_CHAR            shift, and go to state 8
-    T_SHORT           shift, and go to state 9
-    T_INT             shift, and go to state 10
-    T_LONG            shift, and go to state 11
-    T_SIGNED          shift, and go to state 12
-    T_UNSIGNED        shift, and go to state 13
-    T_FLOAT           shift, and go to state 14
-    T_DOUBLE          shift, and go to state 15
-    T_CONST           shift, and go to state 16
-    T_VOLATILE        shift, and go to state 17
-    T_VOID            shift, and go to state 18
-    T_STRUCT          shift, and go to state 19
-    T_UNION           shift, and go to state 20
-    T_ENUM            shift, and go to state 21
+    T_ENUM            shift, and go to state 3
+    T_TYPEDEF         shift, and go to state 4
+    T_EXTERN          shift, and go to state 5
+    T_STATIC          shift, and go to state 6
+    T_AUTO            shift, and go to state 7
+    T_REGISTER        shift, and go to state 8
+    T_CHAR            shift, and go to state 9
+    T_SHORT           shift, and go to state 10
+    T_INT             shift, and go to state 11
+    T_LONG            shift, and go to state 12
+    T_SIGNED          shift, and go to state 13
+    T_UNSIGNED        shift, and go to state 14
+    T_FLOAT           shift, and go to state 15
+    T_DOUBLE          shift, and go to state 16
+    T_CONST           shift, and go to state 17
+    T_VOLATILE        shift, and go to state 18
+    T_VOID            shift, and go to state 19
+    T_STRUCT          shift, and go to state 20
+    T_UNION           shift, and go to state 21
     T_CASE            shift, and go to state 87
     T_DEFAULT         shift, and go to state 88
     T_IF              shift, and go to state 89
@@ -1387,25 +1387,25 @@ State 57
   210 function_definition: declarator declaration_list . compound_statement
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '{'          shift, and go to state 53
 
     declaration                go to state 135
@@ -1427,25 +1427,25 @@ State 58
 
     T_IDENTIFIER  shift, and go to state 137
     T_TYPE_NAME   shift, and go to state 2
-    T_TYPEDEF     shift, and go to state 3
-    T_EXTERN      shift, and go to state 4
-    T_STATIC      shift, and go to state 5
-    T_AUTO        shift, and go to state 6
-    T_REGISTER    shift, and go to state 7
-    T_CHAR        shift, and go to state 8
-    T_SHORT       shift, and go to state 9
-    T_INT         shift, and go to state 10
-    T_LONG        shift, and go to state 11
-    T_SIGNED      shift, and go to state 12
-    T_UNSIGNED    shift, and go to state 13
-    T_FLOAT       shift, and go to state 14
-    T_DOUBLE      shift, and go to state 15
-    T_CONST       shift, and go to state 16
-    T_VOLATILE    shift, and go to state 17
-    T_VOID        shift, and go to state 18
-    T_STRUCT      shift, and go to state 19
-    T_UNION       shift, and go to state 20
-    T_ENUM        shift, and go to state 21
+    T_ENUM        shift, and go to state 3
+    T_TYPEDEF     shift, and go to state 4
+    T_EXTERN      shift, and go to state 5
+    T_STATIC      shift, and go to state 6
+    T_AUTO        shift, and go to state 7
+    T_REGISTER    shift, and go to state 8
+    T_CHAR        shift, and go to state 9
+    T_SHORT       shift, and go to state 10
+    T_INT         shift, and go to state 11
+    T_LONG        shift, and go to state 12
+    T_SIGNED      shift, and go to state 13
+    T_UNSIGNED    shift, and go to state 14
+    T_FLOAT       shift, and go to state 15
+    T_DOUBLE      shift, and go to state 16
+    T_CONST       shift, and go to state 17
+    T_VOLATILE    shift, and go to state 18
+    T_VOID        shift, and go to state 19
+    T_STRUCT      shift, and go to state 20
+    T_UNION       shift, and go to state 21
     ')'           shift, and go to state 138
 
     declaration_specifiers     go to state 139
@@ -1659,25 +1659,25 @@ State 74
   208 function_definition: declaration_specifiers declarator declaration_list . compound_statement
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '{'          shift, and go to state 53
 
     declaration                go to state 135
@@ -1696,20 +1696,20 @@ State 75
   104 struct_or_union_specifier: struct_or_union T_IDENTIFIER '{' . struct_declaration_list '}'
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     type_specifier             go to state 76
     struct_or_union_specifier  go to state 28
@@ -1727,20 +1727,20 @@ State 76
   113                         | type_specifier .
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     $default  reduce using rule 113 (specifier_qualifier_list)
 
@@ -1758,20 +1758,20 @@ State 77
   110 struct_declaration_list: struct_declaration_list . struct_declaration
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '}'          shift, and go to state 160
 
     type_specifier             go to state 76
@@ -1812,20 +1812,20 @@ State 80
   115                         | type_qualifier .
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     $default  reduce using rule 115 (specifier_qualifier_list)
 
@@ -2139,20 +2139,20 @@ State 98
     T_INC_OP          shift, and go to state 85
     T_DEC_OP          shift, and go to state 86
     T_TYPE_NAME       shift, and go to state 2
-    T_CHAR            shift, and go to state 8
-    T_SHORT           shift, and go to state 9
-    T_INT             shift, and go to state 10
-    T_LONG            shift, and go to state 11
-    T_SIGNED          shift, and go to state 12
-    T_UNSIGNED        shift, and go to state 13
-    T_FLOAT           shift, and go to state 14
-    T_DOUBLE          shift, and go to state 15
-    T_CONST           shift, and go to state 16
-    T_VOLATILE        shift, and go to state 17
-    T_VOID            shift, and go to state 18
-    T_STRUCT          shift, and go to state 19
-    T_UNION           shift, and go to state 20
-    T_ENUM            shift, and go to state 21
+    T_ENUM            shift, and go to state 3
+    T_CHAR            shift, and go to state 9
+    T_SHORT           shift, and go to state 10
+    T_INT             shift, and go to state 11
+    T_LONG            shift, and go to state 12
+    T_SIGNED          shift, and go to state 13
+    T_UNSIGNED        shift, and go to state 14
+    T_FLOAT           shift, and go to state 15
+    T_DOUBLE          shift, and go to state 16
+    T_CONST           shift, and go to state 17
+    T_VOLATILE        shift, and go to state 18
+    T_VOID            shift, and go to state 19
+    T_STRUCT          shift, and go to state 20
+    T_UNION           shift, and go to state 21
     '('               shift, and go to state 98
     '&'               shift, and go to state 99
     '*'               shift, and go to state 100
@@ -2501,25 +2501,25 @@ State 128
     T_INC_OP          shift, and go to state 85
     T_DEC_OP          shift, and go to state 86
     T_TYPE_NAME       shift, and go to state 2
-    T_TYPEDEF         shift, and go to state 3
-    T_EXTERN          shift, and go to state 4
-    T_STATIC          shift, and go to state 5
-    T_AUTO            shift, and go to state 6
-    T_REGISTER        shift, and go to state 7
-    T_CHAR            shift, and go to state 8
-    T_SHORT           shift, and go to state 9
-    T_INT             shift, and go to state 10
-    T_LONG            shift, and go to state 11
-    T_SIGNED          shift, and go to state 12
-    T_UNSIGNED        shift, and go to state 13
-    T_FLOAT           shift, and go to state 14
-    T_DOUBLE          shift, and go to state 15
-    T_CONST           shift, and go to state 16
-    T_VOLATILE        shift, and go to state 17
-    T_VOID            shift, and go to state 18
-    T_STRUCT          shift, and go to state 19
-    T_UNION           shift, and go to state 20
-    T_ENUM            shift, and go to state 21
+    T_ENUM            shift, and go to state 3
+    T_TYPEDEF         shift, and go to state 4
+    T_EXTERN          shift, and go to state 5
+    T_STATIC          shift, and go to state 6
+    T_AUTO            shift, and go to state 7
+    T_REGISTER        shift, and go to state 8
+    T_CHAR            shift, and go to state 9
+    T_SHORT           shift, and go to state 10
+    T_INT             shift, and go to state 11
+    T_LONG            shift, and go to state 12
+    T_SIGNED          shift, and go to state 13
+    T_UNSIGNED        shift, and go to state 14
+    T_FLOAT           shift, and go to state 15
+    T_DOUBLE          shift, and go to state 16
+    T_CONST           shift, and go to state 17
+    T_VOLATILE        shift, and go to state 18
+    T_VOID            shift, and go to state 19
+    T_STRUCT          shift, and go to state 20
+    T_UNION           shift, and go to state 21
     T_CASE            shift, and go to state 87
     T_DEFAULT         shift, and go to state 88
     T_IF              shift, and go to state 89
@@ -2930,20 +2930,20 @@ State 158
   110 struct_declaration_list: struct_declaration_list . struct_declaration
 
     T_TYPE_NAME  shift, and go to state 2
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '}'          shift, and go to state 248
 
     type_specifier             go to state 76
@@ -3116,20 +3116,20 @@ State 168
     T_INC_OP          shift, and go to state 85
     T_DEC_OP          shift, and go to state 86
     T_TYPE_NAME       shift, and go to state 2
-    T_CHAR            shift, and go to state 8
-    T_SHORT           shift, and go to state 9
-    T_INT             shift, and go to state 10
-    T_LONG            shift, and go to state 11
-    T_SIGNED          shift, and go to state 12
-    T_UNSIGNED        shift, and go to state 13
-    T_FLOAT           shift, and go to state 14
-    T_DOUBLE          shift, and go to state 15
-    T_CONST           shift, and go to state 16
-    T_VOLATILE        shift, and go to state 17
-    T_VOID            shift, and go to state 18
-    T_STRUCT          shift, and go to state 19
-    T_UNION           shift, and go to state 20
-    T_ENUM            shift, and go to state 21
+    T_ENUM            shift, and go to state 3
+    T_CHAR            shift, and go to state 9
+    T_SHORT           shift, and go to state 10
+    T_INT             shift, and go to state 11
+    T_LONG            shift, and go to state 12
+    T_SIGNED          shift, and go to state 13
+    T_UNSIGNED        shift, and go to state 14
+    T_FLOAT           shift, and go to state 15
+    T_DOUBLE          shift, and go to state 16
+    T_CONST           shift, and go to state 17
+    T_VOLATILE        shift, and go to state 18
+    T_VOID            shift, and go to state 19
+    T_STRUCT          shift, and go to state 20
+    T_UNION           shift, and go to state 21
     '('               shift, and go to state 98
     '&'               shift, and go to state 99
     '*'               shift, and go to state 100
@@ -4431,25 +4431,25 @@ State 232
 
     T_IDENTIFIER  shift, and go to state 1
     T_TYPE_NAME   shift, and go to state 2
-    T_TYPEDEF     shift, and go to state 3
-    T_EXTERN      shift, and go to state 4
-    T_STATIC      shift, and go to state 5
-    T_AUTO        shift, and go to state 6
-    T_REGISTER    shift, and go to state 7
-    T_CHAR        shift, and go to state 8
-    T_SHORT       shift, and go to state 9
-    T_INT         shift, and go to state 10
-    T_LONG        shift, and go to state 11
-    T_SIGNED      shift, and go to state 12
-    T_UNSIGNED    shift, and go to state 13
-    T_FLOAT       shift, and go to state 14
-    T_DOUBLE      shift, and go to state 15
-    T_CONST       shift, and go to state 16
-    T_VOLATILE    shift, and go to state 17
-    T_VOID        shift, and go to state 18
-    T_STRUCT      shift, and go to state 19
-    T_UNION       shift, and go to state 20
-    T_ENUM        shift, and go to state 21
+    T_ENUM        shift, and go to state 3
+    T_TYPEDEF     shift, and go to state 4
+    T_EXTERN      shift, and go to state 5
+    T_STATIC      shift, and go to state 6
+    T_AUTO        shift, and go to state 7
+    T_REGISTER    shift, and go to state 8
+    T_CHAR        shift, and go to state 9
+    T_SHORT       shift, and go to state 10
+    T_INT         shift, and go to state 11
+    T_LONG        shift, and go to state 12
+    T_SIGNED      shift, and go to state 13
+    T_UNSIGNED    shift, and go to state 14
+    T_FLOAT       shift, and go to state 15
+    T_DOUBLE      shift, and go to state 16
+    T_CONST       shift, and go to state 17
+    T_VOLATILE    shift, and go to state 18
+    T_VOID        shift, and go to state 19
+    T_STRUCT      shift, and go to state 20
+    T_UNION       shift, and go to state 21
     '('           shift, and go to state 232
     ')'           shift, and go to state 297
     '['           shift, and go to state 233
@@ -4568,26 +4568,26 @@ State 239
   148 parameter_list: parameter_list ',' . parameter_declaration
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
     T_ELLIPSIS   shift, and go to state 305
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
 
     declaration_specifiers     go to state 139
     storage_class_specifier    go to state 26
@@ -4914,25 +4914,25 @@ State 265
   165                           | '(' . parameter_type_list ')'
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     '('          shift, and go to state 265
     ')'          shift, and go to state 297
     '['          shift, and go to state 233
@@ -5334,25 +5334,25 @@ State 303
   167                           | direct_abstract_declarator '(' . parameter_type_list ')'
 
     T_TYPE_NAME  shift, and go to state 2
-    T_TYPEDEF    shift, and go to state 3
-    T_EXTERN     shift, and go to state 4
-    T_STATIC     shift, and go to state 5
-    T_AUTO       shift, and go to state 6
-    T_REGISTER   shift, and go to state 7
-    T_CHAR       shift, and go to state 8
-    T_SHORT      shift, and go to state 9
-    T_INT        shift, and go to state 10
-    T_LONG       shift, and go to state 11
-    T_SIGNED     shift, and go to state 12
-    T_UNSIGNED   shift, and go to state 13
-    T_FLOAT      shift, and go to state 14
-    T_DOUBLE     shift, and go to state 15
-    T_CONST      shift, and go to state 16
-    T_VOLATILE   shift, and go to state 17
-    T_VOID       shift, and go to state 18
-    T_STRUCT     shift, and go to state 19
-    T_UNION      shift, and go to state 20
-    T_ENUM       shift, and go to state 21
+    T_ENUM       shift, and go to state 3
+    T_TYPEDEF    shift, and go to state 4
+    T_EXTERN     shift, and go to state 5
+    T_STATIC     shift, and go to state 6
+    T_AUTO       shift, and go to state 7
+    T_REGISTER   shift, and go to state 8
+    T_CHAR       shift, and go to state 9
+    T_SHORT      shift, and go to state 10
+    T_INT        shift, and go to state 11
+    T_LONG       shift, and go to state 12
+    T_SIGNED     shift, and go to state 13
+    T_UNSIGNED   shift, and go to state 14
+    T_FLOAT      shift, and go to state 15
+    T_DOUBLE     shift, and go to state 16
+    T_CONST      shift, and go to state 17
+    T_VOLATILE   shift, and go to state 18
+    T_VOID       shift, and go to state 19
+    T_STRUCT     shift, and go to state 20
+    T_UNION      shift, and go to state 21
     ')'          shift, and go to state 327
 
     declaration_specifiers     go to state 139

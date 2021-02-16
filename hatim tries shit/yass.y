@@ -2,6 +2,7 @@
 	#include <stdlib.h>
 	#include <stdio.h>
 	#include "symboltable.h"
+
 	entry_t** symbol_table;
 
 	int yyerror(char *msg);
@@ -11,11 +12,11 @@
 %token T_PTR_OP T_INC_OP T_DEC_OP T_LEFT_OP T_RIGHT_OP T_LE_OP T_GE_OP T_EQ_OP T_NE_OP
 %token T_AND_OP T_OR_OP T_MUL_ASSIGN T_DIV_ASSIGN T_MOD_ASSIGN T_ADD_ASSIGN
 %token T_SUB_ASSIGN T_LEFT_ASSIGN T_RIGHT_ASSIGN T_AND_ASSIGN
-%token T_XOR_ASSIGN T_OR_ASSIGN T_TYPE_NAME
+%token T_XOR_ASSIGN T_OR_ASSIGN T_TYPE_NAME T_ENUM T_ELLIPSIS
 
 %token T_TYPEDEF T_EXTERN T_STATIC T_AUTO T_REGISTER
 %token T_CHAR T_SHORT T_INT T_LONG T_SIGNED T_UNSIGNED T_FLOAT T_DOUBLE T_CONST T_VOLATILE T_VOID
-%token T_STRUCT T_UNION T_ENUM T_ELLIPSIS
+%token T_STRUCT T_UNION 
 
 %token T_CASE T_DEFAULT T_IF T_ELSE T_SWITCH T_WHILE T_DO T_FOR T_GOTO T_CONTINUE T_BREAK T_RETURN
 
@@ -201,8 +202,8 @@ type_specifier
 	| T_LONG
 	| T_FLOAT
 	| T_DOUBLE
-	| T_SIGNED
-	| T_UNSIGNED
+	| T_SIGNED	
+	| T_UNSIGNED	
 	| struct_or_union_specifier
 	| enum_specifier
 	| T_TYPE_NAME
