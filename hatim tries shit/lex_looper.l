@@ -45,6 +45,7 @@ H               [a-fA-F0-9]
 0[xX]{H}+           {count(); return(T_CONSTANT);}
 {D}+                {count(); return(T_CONSTANT);}
 L?'(\\.|[^\\'])+'   {count(); return(T_CONSTANT);}
+\n                  {yylineno++;}
 
 {D}+[Ee][+-]?{D}+             {count(); return(T_CONSTANT);}
 {D}*"."{D}+([Ee][+-]?{D}+)?   {count(); return(T_CONSTANT);}
@@ -128,12 +129,11 @@ loop:
 }
 
 
-int column = 0;
 
 int count()
 {
     int i;
-
+    int column = 0;
     for (i = 0; yytext[i] != '\0'; i++)
         if (yytext[i] == '\n')
             column = 0;
@@ -148,18 +148,4 @@ int count()
 int check_type()
 {
     return(T_IDENTIFIER);
-}
-
-int main (int argc, char *argv[]){
-    
-    entry_t** symbol_table = create_table();
-	yyin = fopen(argv[1], "r");
-	flag = yyparse();
-	fclose(yyin);
-
-    printf("Parsing finished!");
-	
-	display(symbol_table);
-	
-	return flag;
 }

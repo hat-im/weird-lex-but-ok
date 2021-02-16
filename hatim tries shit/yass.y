@@ -1,3 +1,13 @@
+%{
+	#include <stdlib.h>
+	#include <stdio.h>
+	#include "symboltable.h"
+
+	entry_t** symbol_table;
+
+	int yyerror(char *msg);
+%}
+
 %token T_IDENTIFIER T_CONSTANT T_STRING_LITERAL T_SIZEOF
 %token T_PTR_OP T_INC_OP T_DEC_OP T_LEFT_OP T_RIGHT_OP T_LE_OP T_GE_OP T_EQ_OP T_NE_OP
 %token T_AND_OP T_OR_OP T_MUL_ASSIGN T_DIV_ASSIGN T_MOD_ASSIGN T_ADD_ASSIGN
@@ -11,6 +21,8 @@
 %token T_CASE T_DEFAULT T_IF T_ELSE T_SWITCH T_WHILE T_DO T_FOR T_GOTO T_CONTINUE T_BREAK T_RETURN
 
 %start translation_unit
+
+%nonassoc T_LOWER_THAN_ELSE
 %%
 
 primary_expression
@@ -377,8 +389,8 @@ expression_statement
 	;
 
 selection_statement
-	: T_IF '(' expression ')' statement
-	| T_IF '(' expression ')' statement T_ELSE statement
+	: T_IF '(' expression ')' statement T_ELSE statement
+	| T_IF '(' expression ')' statement %prec T_LOWER_THAN_ELSE
 	| T_SWITCH '(' expression ')' statement
 	;
 
@@ -415,14 +427,36 @@ function_definition
 	;
 
 %%
-#include <stdio.h>
 
-extern char yytext[];
-extern int column;
+#include "lex.yy.c"
+#include <ctype.h>
 
-yyerror(s)
-char *s;
+int main(int argc, char *argv[])
 {
-	fflush(stdout);
-	printf("\n%*s\n%*s\n", column, "^", column, s);
+	symbol_table = create_table();
+	constant_table = create_table();
+
+	yyin = fopen(argv[1], "r");
+
+	if(!yyparse())
+	{
+		printf("\nParsing complete\n");
+	}
+	else
+	{
+			printf("\nParsing failed\n");
+	}
+
+
+	printf("\n\tSymbol table");
+	display(symbol_table);
+
+
+	fclose(yyin);
+	return 0;
+}
+
+int yyerror(char *msg)
+{
+	printf("Line no: %d Error message: %s Token: %s\n", yylineno, msg, yytext);
 }
