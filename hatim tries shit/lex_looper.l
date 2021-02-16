@@ -40,7 +40,7 @@ H               [a-fA-F0-9]
 "typedef"           {count(); return(T_TYPEDEF);}
 "void"              {count(); return(T_VOID);}
 
-({L}|_){A}*       {int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(current_dtype);}
+({L}|_){A}*       {int c=count();insert(symbol_table, yytext, current_dtype, yylineno, c, c+strlen(yytext)); return(T_IDENTIFIER);}
 
 0[xX]{H}+           {count(); return(T_CONSTANT);}
 {D}+                {count(); return(T_CONSTANT);}
