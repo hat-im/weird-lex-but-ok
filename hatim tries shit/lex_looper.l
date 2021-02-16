@@ -1,8 +1,10 @@
 %{
 #include <stdio.h>
 #include "y.tab.h"
+#include "symboltable.h"
 
 void count();
+entry_t** symbol_table = create_table();
 %}
 
 D               [0-9]
@@ -11,12 +13,12 @@ A               {D}|{L}|_
 H               [a-fA-F0-9]
 
 %%
-"int"               {insert(symbol_table, yytext, , line_number, count(),0); return(T_INT);}
-"char"              {insert(symbol_table, yytext, , line_number, count(),0); return(T_CHAR);}
-"double"            {insert(symbol_table, yytext, , line_number, count(),0); return(T_DOUBLE);}
-"float"             {insert(symbol_table, yytext, , line_number, count(),0); return(T_FLOAT);}
+"int"               {count(); return(T_INT);}
+"char"              {count(); return(T_CHAR);}
+"double"            {count(); return(T_DOUBLE);}
+"float"             {count(); return(T_FLOAT);}
 "long"              {count(); return(T_LONG);}
-"short"             {insert(symbol_table, yytext, , line_number, count(),0); return(T_SHORT);}
+"short"             {count(); return(T_SHORT);}
 "unsigned"          {count(); return(T_UNSIGNED);}
 "const"             {count(); return(T_CONST);}
 
@@ -39,7 +41,7 @@ H               [a-fA-F0-9]
 "typedef"           {count(); return(T_TYPEDEF);}
 "void"              {count(); return(T_VOID);}
 
-({L}|_){A}*       {count(); return(check_type());}
+({L}|_){A}*       {insert(symbol_table, yytext, check_type(), count(), count()+strlen(yytext)); return(check_type());}
 
 0[xX]{H}+           {count(); return(T_CONSTANT);}
 {D}+                {count(); return(T_CONSTANT);}
@@ -146,18 +148,5 @@ int count()
 
 int check_type()
 {
-/*
-* pseudo code --- this is what it should check
-*
-*    if (yytext == type_name)
-*        return(T_TYPE_NAME);
-*
-*    return(T_IDENTIFIER);
-*/
-
-/*
-*    it actually will only return T_IDENTIFIER
-*/
-
     return(T_IDENTIFIER);
 }
