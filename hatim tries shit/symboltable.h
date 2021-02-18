@@ -60,7 +60,7 @@ uint32_t hash( char *lexeme )
 }
 
 /* Create an entry for a lexeme, token pair. This will be called from the insert function */
-entry_t *create_entry( char *lexeme, int value, int yylineno, int start, int end )
+entry_t *create_entry( char *lexeme, int value, int yylineno, int start, int end, int type )
 {
 	entry_t *newentry;
 
@@ -72,7 +72,7 @@ entry_t *create_entry( char *lexeme, int value, int yylineno, int start, int end
 	if( ( newentry->lexeme = strdup( lexeme ) ) == NULL ) {
 		return NULL;
 	}
-
+	newentry->data_type=type;
 	newentry->value = value;
 	newentry->successor = NULL;
     newentry->line=yylineno;
@@ -107,7 +107,7 @@ entry_t* search( entry_t** hash_table_ptr, char* lexeme )
 }
 
 /* Insert an entry into a hash table. */
-entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int value, int lineno, int start, int end)
+entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int data_type ,int value, int lineno, int start, int end)
 {
 	entry_t* finder = search( hash_table_ptr, lexeme );
 	if( finder != NULL) // If lexeme already exists, don't insert, return
@@ -118,7 +118,7 @@ entry_t* insert( entry_t** hash_table_ptr, char* lexeme, int value, int lineno, 
 	entry_t* head = NULL;
 
 	idx = hash( lexeme ); // Get the index for this lexeme based on the hash function
-	newentry = create_entry( lexeme, value, lineno, start, end); // Create an entry using the <lexeme, token> pair
+	newentry = create_entry( lexeme, value, lineno, start, end, data_type); // Create an entry using the <lexeme, token> pair
 
 	if(newentry == NULL) // In case there was some error while executing create_entry()
 	{
