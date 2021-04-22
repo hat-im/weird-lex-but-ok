@@ -1,8 +1,4 @@
-%{
-    #define _RED        "\x1b[31m"
-    #define ANSI_COLOR_GREEN    "\x1b[32m"
-    #define ANSI_COLOR_CYAN     "\x1b[36m"
-    #define _RESET  "\x1b[0m"
+{
     void yyerror(char* s);
     int yylex();
     #include <stdio.h>
@@ -46,7 +42,7 @@
     void TAC_assign();
 %}
 
-%nonassoc IF
+%nonassoc IF ELSE
 %token INT CHAR FLOAT DOUBLE LONG SHORT SIGNED UNSIGNED STRUCT
 %token RETURN MAIN
 %token VOID
@@ -56,14 +52,14 @@
 %token AUTO SWITCH CASE ENUM REG TYPEDEF EXTERN UNION CONTINUE STATIC DEFAULT GOTO VOLATILE CONST IDENTIFIER NUM_CONSTANT CHAR_CONSTANT STRING_CONSTANT
 
 
-%nonassoc ELSE
-
 %right leftshiftAssignment rightshiftAssignment
 %right xorAssignment orAssignment
 %right andAssignment moduloAssignment
 %right multiplicationAssignment divisionAssignment
 %right additionAssignment subtractionAssignment
 %right assignment
+%right SIZEOF
+%right negation not
 
 %left or
 %left and
@@ -75,11 +71,7 @@
 %left leftshift rightshift 
 %left add subtract
 %left multiplication divide modulo
-
-%right SIZEOF
-%right negation not
 %left increment decrement 
-
 
 %start program
 
@@ -131,10 +123,10 @@ vdi : identifier_array_type {$$ = 127;} | assignment expression {
 }; 
 
 identifier_array_type
-            : '[' initilization_params
+            : '[' init_params
             | ;
 
-initilization_params
+init_params
             : subtract NUM_CONSTANT ']' initilization {puts("ERROR: Array size negative!!"); yyerror("");}
             | NUM_CONSTANT {if(atoi(curval) == 0) {puts("ERROR: Array Size is 0!!"); yyerror("");}} ']' initilization
             | ']' string_initilization;
@@ -220,16 +212,16 @@ expression_statment
             | ';' ;
 
 conditional_statements 
-            : IF '(' simple_expression {if_not_goto();} ')' statement {if_end_goto();} conditional_statements_breakup {if_end_label();};
+            : IF '(' simp_ex {if_not_goto();} ')' statement {if_end_goto();} conditional_statements_breakup {if_end_label();};
 
 conditional_statements_breakup
             : ELSE statement
             | ;
 
 iterative_statements 
-            : WHILE '(' {iter_label();} simple_expression {if_not_goto();} ')' statement {iter_loop_label();}
-            | FOR '(' expression ';' {iter_label();} simple_expression {if_not_goto();}';' expression ')' statement {iter_loop_label();}
-            | {iter_label();} DO statement WHILE '(' simple_expression {if_not_goto(); iter_loop_label();} ')' ';';
+            : WHILE '(' {iter_label();} simp_ex {if_not_goto();} ')' statement {iter_loop_label();}
+            | FOR '(' expression ';' {iter_label();} simp_ex {if_not_goto();}';' expression ')' statement {iter_loop_label();}
+            | {iter_label();} DO statement WHILE '(' simp_ex {if_not_goto(); iter_loop_label();} ')' ';';
 
 return_statement 
             : RETURN return_statement_breakup {
@@ -274,8 +266,7 @@ expression
                     $$ = 6;
                 }
             }
-            | simple_expression {
-                // reassign_TAC();
+            | simp_ex {
                 $$ = $1;
             };
 
@@ -312,14 +303,14 @@ expression_breakup
                 $$  = 5;
             };
 
-simple_expression 
-            : and_expression simple_expression_breakup {
+simp_ex 
+            : and_expression simp_ex_breakup {
                 if($1 != -98 && $2 != -98) TAC();
                 $$ = $1;
             };
 
-simple_expression_breakup 
-            : or {val_push("||");} and_expression simple_expression_breakup {}| {$$ = -98;};
+simp_ex_breakup 
+            : or {val_push("||");} and_expression simp_ex_breakup {}| {$$ = -98;};
 
 and_expression 
             : unary_relation_expression and_expression_breakup {
@@ -393,7 +384,6 @@ factor
 
 mutable 
             : IDENTIFIER {
-                // check identifire type and return;
                 val_push(cur_identifier);
                 
                 char type = get_identifier_type(cur_identifier);
@@ -479,7 +469,7 @@ void if_end_label() {
     char code[100] = {0};
     strcpy(code, "L");
     sprintf(code + 1, "%d", labl_stack[lbltop].id);
-    printf(_RED "%s: \n" _RESET, code);
+    printf( "%s: \n" , code);
     fprintf(fp, "%s: \n", code);
     lbltop--;
 }
@@ -488,7 +478,7 @@ void if_not_goto() {
     char code[100] = {0};
     strcpy(code, "L");
     sprintf(code + 1, "%d", L_cnt);
-    printf(_RED "if not %s goto %s\n" _RESET, val_stack[valtop].value, code);
+    printf( "if not %s goto %s\n" , val_stack[valtop].value, code);
     fprintf(fp, "if not %s goto %s\n", val_stack[valtop].value, code);
     labl_stack[++lbltop].id = L_cnt++;
 }
@@ -497,11 +487,11 @@ void if_end_goto() {
     char code[100] = {0};
     strcpy(code, "L");
     sprintf(code + 1, "%d", L_cnt);
-    printf(_RED "goto %s\n" _RESET, code);
+    printf( "goto %s\n" , code);
     fprintf(fp,  "goto %s\n" , code);
     code[0] = 'L';
     sprintf(code + 1, "%d", labl_stack[lbltop].id);
-    printf(_RED "%s: \n" _RESET, code);
+    printf( "%s: \n" , code);
     fprintf(fp, "%s: \n", code);
     labl_stack[lbltop].id = L_cnt++;
 }
@@ -528,7 +518,7 @@ void identifier_TAC()  {
     char code[100] = {0};
     strcpy(code, "T");
     sprintf(code + 1, "%d", T_cnt);
-    printf(_RED "= %s NULL %s\n" _RESET, cur_identifier, code);
+    printf( "= %s NULL %s\n" , cur_identifier, code);
     fprintf(fp, "= %s NULL %s\n" , cur_identifier, code);
     T_cnt++;
     val_push(code);
@@ -537,7 +527,7 @@ void constant_TAC() {
     char code[100] = {0};
     strcpy(code, "T");
     sprintf(code + 1, "%d", T_cnt);
-    printf(_RED "= %s NULL %s\n" _RESET, curval , code);
+    printf( "= %s NULL %s\n" , curval , code);
     fprintf(fp, "= %s NULL %s\n"  , curval , code);
     T_cnt++;
     val_push(code);
@@ -545,8 +535,7 @@ void constant_TAC() {
 
 void reassign_TAC() {
     if(valtop-1 < 0) return;
-    // if(val_stack[valtop].value[0] == 0 || val_stack[valtop-1].value[0] == 0) return;
-    printf(_RED "= %s NULL %s\n" _RESET, val_stack[valtop].value, val_stack[valtop-1].value);
+    printf( "= %s NULL %s\n" , val_stack[valtop].value, val_stack[valtop-1].value);
     fprintf(fp, "= %s NULL %s\n", val_stack[valtop].value, val_stack[valtop-1].value);
     valtop -= 2;
 }
@@ -556,7 +545,7 @@ void TAC() {
     strcpy(code, "T");
     if(valtop-2 < 0) return;
     sprintf(code + 1, "%d", T_cnt);
-    printf(_RED "%s %s %s %s\n" _RESET, val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    printf( "%s %s %s %s\n" , val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
     fprintf(fp, "%s %s %s %s\n", val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
     valtop -= 2;
     strcpy(val_stack[valtop].value, code);
@@ -567,7 +556,7 @@ void TAC_assign() {
     strcpy(code, "T");
 
     sprintf(code + 1, "%d", T_cnt);
-    printf(_RED "%s %s %s %s\n" _RESET, val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    printf( "%s %s %s %s\n" , val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
     fprintf(fp, "%s %s %s %s\n", val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
     valtop -= 2;
 }
@@ -579,17 +568,14 @@ int main(int argc , char **argv)
     yyparse();
     if((bbracketsopen-bbracketsclose)){
         printf("ERROR: brackets error [\n");
-        // yyerror("ERROR: brackets error [\n");
         flag = 1;
     }
     if((fbracketsopen-fbracketsclose)){
         printf("ERROR: brackets error {\n");
-        // yyerror("ERROR: brackets error {\n");
         flag = 1;
     }
     if((cbracketsopen-cbracketsclose)){
         printf("ERROR: brackets error (\n");
-        // yyerror("ERROR: brackets error (\n");
         flag = 1;
     }
 
@@ -615,8 +601,6 @@ void yyerror(char *s)
     puts("=========================================================================");
     printf("Parsing Failed at line no: %d\n", yylineno);
     printf("Error: %s\n", yytext);
-    // exit(0);
-    // flag=1;
 }
 
 void ins()
@@ -627,4 +611,4 @@ void ins()
 void insV()
 {
     insert_symbol_table_value(Match_str,curval);
-} 
+}  

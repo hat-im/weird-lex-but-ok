@@ -1,3 +1,5 @@
+import math
+import re
 f = open("TAC.txt","r")
 fout = open("out.txt","w")
 ftemp = open("temp.txt","w")
@@ -8,7 +10,12 @@ constantFoldedList = []
 print("Quadruple form after Constant Folding")
 print("-------------------------------------")
 for i in list_of_lines:
-    if "function" in i:
+    i = i.strip("\n")
+
+    count = len(i.split(" "))  
+    if count != 4 or "goto" in i:
+        writing = i+"\n"
+        ftemp.write(writing)
         pass
     else:
         i = i.strip("\n")
@@ -59,7 +66,7 @@ for i in list_of_lines:
                     arg2Res = str(dictValues[arg2])
                     flag2 = 1
                 if(flag1==1 and flag2==1):
-                    result = eval(arg1Res+op+arg2Res)
+                    result = str(eval(arg1Res+op+arg2Res))
                     dictValues[res] = result
                     print("=",result,"NULL",res)
                     write_back="="+" "+result+" "+"NULL"+" "+res+"\n"
@@ -116,7 +123,7 @@ for i in constantFoldedList:
 
 
 print("\n")
-print("After dead code elimination - ")
+print("common sub exp ")
 print("------------------------------")
 flip = open("temp.txt","r")
 opt = open("common_sub.txt", "w")
@@ -124,11 +131,16 @@ list_of_lines = flip.readlines()
 re_written_res="temp"
 hold = {}
 writen=0
+passer=[]
+passer_part=[]
 for i in list_of_lines:
-    if "function"  in i:
+    i = i.strip("\n")
+    count = len(i.split(" "))  
+    if count != 4 or "goto" in i:
+        writing = i+"\n"
+        opt.write(writing)
         pass
     else:
-       
         i = i.strip("\n")
         op,arg1,arg2,res = i.split()
         result = op + arg1 + arg2
@@ -144,20 +156,41 @@ for i in list_of_lines:
             if writen==1:
                 write_back = op+" "+pointer+" "+arg2+" "+res+"\n"
                 print(write_back)
+                passer_part=[op,pointer,arg2,res]
                 writen=0
             else:
                 write_back = op+" "+arg1+" "+arg2+" "+res+"\n"
                 print(write_back)
-            
-            opt.write(write_back)
- 
+                passer_part=[op,arg1,arg2,res]
 
+            passer.append(passer_part)
+            passer_part=[]
+            opt.write(write_back)
+
+#shift << >> optimization
+def Log2(x):
+    return (math.log10(x) / math.log10(2))
+def isPowerOfTwo(n):
+    return (math.ceil(Log2(n)) == math.floor(Log2(n)))
+
+
+
+for i in passer:
+    if(i[1].isnumeric() ):
+        if (i[0]=="*" and (isPowerOfTwo(int(i[1]))) ):
+            i[0]="<<"
+    if(i[2].isnumeric() ):
+        if (i[0]=="*" and (isPowerOfTwo(int(i[2]))) ):
+            i[0]="<<"
+       
+
+    
 
 
 print("\n")
 print("After dead code elimination - ")
 print("------------------------------")
-for i in constantFoldedList:
+for i in passer:
     if(i[0]=="="):
         pass
     elif(i[0] in ["+","-","*","/","==","<=","<",">",">="]):

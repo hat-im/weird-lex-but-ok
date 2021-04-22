@@ -1,3 +1,18 @@
-= 2 NULL T0
-* T0 2 T2
-= T2 NULL p
+function main:
+= 0 NULL T0
+L0:
+= T0 NULL T2
+< i T2 T3
+if not T3 goto L1
++ i 1 T4
+= 1 NULL T4
+= T4 NULL T6
+L2:
+< T2 T8 T9
+if not T9 goto L3
++ j 1 T10
+= 5 NULL T10
+goto L2
+L3: 
+goto L0
+L1: 
