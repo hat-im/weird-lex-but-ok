@@ -1354,7 +1354,7 @@ case 8:
 YY_RULE_SETUP
 #line 404 "scanner.l"
 {
-    printf("%s is a keyword\n", yytext);
+    // printf("%s is a keyword\n", yytext);
 	if(strcmp(yytext, "auto") == 0){
 		strcpy(Match_type, yytext);
 		insert_symbolTable(yytext, "KEYWORD");
@@ -1518,7 +1518,7 @@ case 12:
 YY_RULE_SETUP
 #line 554 "scanner.l"
 {
-    printf("%s is a identifier\n", yytext);
+    // printf("%s is a identifier\n", yytext);
 	strcpy(Match_str, yytext);
 	strcpy(cur_identifier, yytext);
 	insert_symbolTable(yytext, "Identifier");
@@ -1529,7 +1529,7 @@ case 13:
 YY_RULE_SETUP
 #line 562 "scanner.l"
 {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	strcpy(curval, yytext);
 	// insert_constantsTable(yytext, "Constant");
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -1544,7 +1544,7 @@ case 14:
 YY_RULE_SETUP
 #line 573 "scanner.l"
 {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	// insert_constantsTable(yytext, "Constant");
 	strcpy(curval, yytext);
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -1559,7 +1559,7 @@ case 15:
 YY_RULE_SETUP
 #line 584 "scanner.l"
 {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	// insert_constantsTable(yytext, "Constant");
 	strcpy(curval, yytext);
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -1573,7 +1573,7 @@ case 16:
 YY_RULE_SETUP
 #line 596 "scanner.l"
 {
-    printf("%s is a special symbol\n", yytext);
+    // printf("%s is a special symbol\n", yytext);
 	
 	if(yytext[0] == ';') { return(';'); }
 	else
@@ -1609,7 +1609,7 @@ case 17:
 YY_RULE_SETUP
 #line 630 "scanner.l"
 {
-    printf("%s is an operator\n", yytext);
+    // printf("%s is an operator\n", yytext);
 	if(strcmp(yytext, "++") == 0) return increment;
 	else if(strcmp(yytext, "--") == 0) return decrement;
 	else if(strcmp(yytext, "<<") == 0) return leftshift;

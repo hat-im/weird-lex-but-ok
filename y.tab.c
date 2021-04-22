@@ -68,54 +68,53 @@
 /* First part of user prologue.  */
 #line 1 "parser.y"
 
-	#define _RED		"\x1b[31m"
-	#define ANSI_COLOR_GREEN	"\x1b[32m"
-	#define ANSI_COLOR_CYAN		"\x1b[36m"
-	#define _RESET	"\x1b[0m"
-	void yyerror(char* s);
-	int yylex();
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <string.h>
-	void ins();
-	void insV();
-	int flag=0;
-	FILE* fp;
-	int T_cnt = 0, valtop = 0, lbltop = 0, L_cnt = 0;
+    #define _RED        "\x1b[31m"
+    #define ANSI_COLOR_GREEN    "\x1b[32m"
+    #define ANSI_COLOR_CYAN     "\x1b[36m"
+    #define _RESET  "\x1b[0m"
+    void yyerror(char* s);
+    int yylex();
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    void ins();
+    void insV();
+    int flag=1;
+    FILE* fp;
+    int T_cnt = 0, valtop = 0, lbltop = 0, L_cnt = 0;
+    extern char Match_str[20];
+    extern char Match_type[20];
+    extern char curval[20];
+    extern char cur_identifier[20];
+    extern char cur_function[20];
+    extern int cur_scope;
+    extern int params_cnt;
+    extern int funccall_params_cnt;
+    void insert_symbol_table_scope(char*, int);
+    void insert_symbol_table_params_cnt(char*, int);
+    void remove_scope(int);
+    int verify_funccall_cnt(char*, int);
+    int check_arg_type(int , char* , int);
+    void insert_arg_type(char*, char*, int);
+    void insert_func_table(char* );
+    char get_identifier_type(char* );
+    struct labl {
+        char value[500];
+        int id;
+    } val_stack[100], labl_stack[100];
+    void val_push(char* );
+    void TAC();
+    void reassign_TAC();
+    void identifier_TAC();
+    void constant_TAC();
+    void if_not_goto();
+    void if_end_goto();
+    void if_end_label();
+    void iter_label();
+    void iter_loop_label(); 
+    void TAC_assign();
 
-	extern char Match_str[20];
-	extern char Match_type[20];
-	extern char curval[20];
-	extern char cur_identifier[20];
-	extern char cur_function[20];
-	extern int cur_scope;
-	extern int params_cnt;
-	extern int funccall_params_cnt;
-	void insert_symbol_table_scope(char*, int);
-	void insert_symbol_table_params_cnt(char*, int);
-	void remove_scope(int);
-	int verify_funccall_cnt(char*, int);
-	int check_arg_type(int , char* , int);
-	void insert_arg_type(char*, char*, int);
-	void insert_func_table(char* );
-	char get_identifier_type(char* );
-	struct labl {
-		char value[500];
-		int id;
-	} val_stack[100], labl_stack[100];
-	void val_push(char* );
-	void TAC();
-	void reassign_TAC();
-	void identifier_TAC();
-	void constant_TAC();
-	void if_not_goto();
-	void if_end_goto();
-	void if_end_label();
-	void iter_label();
-	void iter_loop_label();	
-	void TAC_assign();
-
-#line 119 "y.tab.c"
+#line 118 "y.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -690,23 +689,23 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    89,    89,    92,    95,    96,    99,   100,   101,   104,
-     107,   110,   113,   116,   119,   119,   130,   130,   135,   136,
-     139,   140,   140,   141,   144,   145,   146,   149,   149,   149,
-     149,   150,   151,   152,   153,   154,   157,   157,   157,   157,
-     160,   160,   160,   160,   163,   163,   166,   166,   169,   169,
-     171,   171,   174,   178,   181,   184,   187,   187,   190,   190,
-     193,   196,   197,   200,   200,   203,   204,   207,   207,   208,
-     208,   209,   209,   210,   213,   213,   216,   217,   220,   221,
-     224,   224,   224,   227,   228,   231,   231,   231,   232,   232,
-     232,   233,   233,   233,   236,   248,   249,   252,   255,   258,
-     261,   264,   265,   268,   278,   284,   288,   288,   292,   292,
-     296,   296,   300,   300,   303,   303,   307,   307,   311,   311,
-     317,   323,   323,   323,   326,   332,   332,   333,   336,   337,
-     342,   352,   355,   358,   358,   358,   359,   359,   359,   362,
-     371,   374,   375,   378,   387,   390,   390,   390,   393,   393,
-     396,   404,   413,   414,   417,   420,   423,   428,   428,   444,
-     444,   447,   447,   447,   450,   450,   451,   454,   455,   456
+       0,    88,    88,    91,    94,    95,    98,    99,   100,   103,
+     106,   109,   112,   115,   118,   118,   129,   129,   134,   135,
+     138,   139,   139,   140,   143,   144,   145,   148,   148,   148,
+     148,   149,   150,   151,   152,   153,   156,   156,   156,   156,
+     159,   159,   159,   159,   162,   162,   165,   165,   168,   168,
+     170,   170,   173,   177,   180,   183,   186,   186,   189,   189,
+     192,   195,   196,   199,   199,   202,   203,   206,   206,   207,
+     207,   208,   208,   209,   212,   212,   215,   216,   219,   220,
+     223,   223,   223,   226,   227,   230,   230,   230,   231,   231,
+     231,   232,   232,   232,   235,   247,   248,   251,   254,   257,
+     260,   263,   264,   267,   277,   283,   287,   287,   291,   291,
+     295,   295,   299,   299,   302,   302,   306,   306,   310,   310,
+     316,   322,   322,   322,   325,   331,   331,   332,   335,   336,
+     341,   351,   354,   357,   357,   357,   358,   358,   358,   361,
+     370,   373,   374,   377,   386,   389,   389,   389,   392,   392,
+     395,   403,   412,   413,   416,   419,   422,   427,   427,   443,
+     443,   446,   446,   446,   449,   449,   450,   453,   454,   455
 };
 #endif
 
@@ -1710,677 +1709,677 @@ yyreduce:
   switch (yyn)
     {
   case 9:
-#line 104 "parser.y"
-                                                                       {
-				
-			}
-#line 1718 "y.tab.c"
+#line 103 "parser.y"
+                                                           {
+                
+            }
+#line 1717 "y.tab.c"
     break;
 
   case 12:
-#line 113 "parser.y"
-                                                        {
-				yyval = yyvsp[0];
-			}
-#line 1726 "y.tab.c"
+#line 112 "parser.y"
+                                            {
+                yyval = yyvsp[0];
+            }
+#line 1725 "y.tab.c"
     break;
 
   case 14:
-#line 119 "parser.y"
-                                     {ins(), insert_symbol_table_scope(cur_identifier, cur_scope); val_push(cur_identifier);}
-#line 1732 "y.tab.c"
+#line 118 "parser.y"
+                         {ins(), insert_symbol_table_scope(cur_identifier, cur_scope); val_push(cur_identifier);}
+#line 1731 "y.tab.c"
     break;
 
   case 15:
-#line 119 "parser.y"
-                                                                                                                                  {
-				if(yyvsp[0] != 127) reassign_TAC();
-				char type = get_identifier_type(cur_identifier);
-				if(type == 'i' && yyvsp[0] == 5) yyval = 5;
-				else if(type == 'c' && yyvsp[0] == 6) yyval = 6;
-				else if(yyvsp[0] != 127) {
-					puts("ERROR:  Declaration type Mismatch.\n");
-					yyerror("");
-				}
-			}
-#line 1747 "y.tab.c"
+#line 118 "parser.y"
+                                                                                                                      {
+                if(yyvsp[0] != 127) reassign_TAC();
+                char type = get_identifier_type(cur_identifier);
+                if(type == 'i' && yyvsp[0] == 5) yyval = 5;
+                else if(type == 'c' && yyvsp[0] == 6) yyval = 6;
+                else if(yyvsp[0] != 127) {
+                    puts("ERROR:  Declaration type Mismatch.\n");
+                    yyerror("");
+                }
+            }
+#line 1746 "y.tab.c"
     break;
 
   case 16:
-#line 130 "parser.y"
+#line 129 "parser.y"
                             {yyval = 127;}
-#line 1753 "y.tab.c"
+#line 1752 "y.tab.c"
     break;
 
   case 17:
-#line 130 "parser.y"
+#line 129 "parser.y"
                                                                 {
-	yyval = yyvsp[0];	
+    yyval = yyvsp[0];    
 }
-#line 1761 "y.tab.c"
+#line 1760 "y.tab.c"
     break;
 
   case 20:
-#line 139 "parser.y"
-                                                                  {puts("ERROR: Array size negative!!"); yyerror("");}
-#line 1767 "y.tab.c"
+#line 138 "parser.y"
+                                                      {puts("ERROR: Array size negative!!"); yyerror("");}
+#line 1766 "y.tab.c"
     break;
 
   case 21:
-#line 140 "parser.y"
-                                       {if(atoi(curval) == 0) {puts("ERROR: Array Size is 0!!"); yyerror("");}}
-#line 1773 "y.tab.c"
+#line 139 "parser.y"
+                           {if(atoi(curval) == 0) {puts("ERROR: Array Size is 0!!"); yyerror("");}}
+#line 1772 "y.tab.c"
     break;
 
   case 27:
-#line 149 "parser.y"
-                              {yyval = 5;}
-#line 1779 "y.tab.c"
+#line 148 "parser.y"
+                  {yyval = 5;}
+#line 1778 "y.tab.c"
     break;
 
   case 28:
-#line 149 "parser.y"
-                                              {yyval = 6;}
-#line 1785 "y.tab.c"
+#line 148 "parser.y"
+                                  {yyval = 6;}
+#line 1784 "y.tab.c"
     break;
 
   case 29:
-#line 149 "parser.y"
-                                                               {yyval = 5;}
-#line 1791 "y.tab.c"
+#line 148 "parser.y"
+                                                   {yyval = 5;}
+#line 1790 "y.tab.c"
     break;
 
   case 48:
-#line 169 "parser.y"
-                                            { ins(); }
-#line 1797 "y.tab.c"
+#line 168 "parser.y"
+                                { ins(); }
+#line 1796 "y.tab.c"
     break;
 
   case 54:
-#line 181 "parser.y"
-                                                         { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n ", cur_function);}
-#line 1803 "y.tab.c"
+#line 180 "parser.y"
+                                             { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n ", cur_function);}
+#line 1802 "y.tab.c"
     break;
 
   case 58:
-#line 190 "parser.y"
-                                         {insert_arg_type(Match_type, cur_function, params_cnt);}
-#line 1809 "y.tab.c"
+#line 189 "parser.y"
+                             {insert_arg_type(Match_type, cur_function, params_cnt);}
+#line 1808 "y.tab.c"
     break;
 
   case 59:
-#line 190 "parser.y"
-                                                                                                                             {insert_symbol_table_params_cnt(cur_function, params_cnt);}
-#line 1815 "y.tab.c"
+#line 189 "parser.y"
+                                                                                                                 {insert_symbol_table_params_cnt(cur_function, params_cnt);}
+#line 1814 "y.tab.c"
     break;
 
   case 63:
-#line 200 "parser.y"
-                                     { ins(); insert_symbol_table_scope(cur_identifier, cur_scope+1); params_cnt++;}
-#line 1821 "y.tab.c"
+#line 199 "parser.y"
+                         { ins(); insert_symbol_table_scope(cur_identifier, cur_scope+1); params_cnt++;}
+#line 1820 "y.tab.c"
     break;
 
   case 74:
-#line 213 "parser.y"
-                          {cur_scope++;}
-#line 1827 "y.tab.c"
+#line 212 "parser.y"
+              {cur_scope++;}
+#line 1826 "y.tab.c"
     break;
 
   case 75:
-#line 213 "parser.y"
-                                                               {remove_scope(cur_scope); cur_scope--;}
-#line 1833 "y.tab.c"
+#line 212 "parser.y"
+                                                   {remove_scope(cur_scope); cur_scope--;}
+#line 1832 "y.tab.c"
     break;
 
   case 80:
-#line 224 "parser.y"
-                                                   {if_not_goto();}
-#line 1839 "y.tab.c"
+#line 223 "parser.y"
+                                       {if_not_goto();}
+#line 1838 "y.tab.c"
     break;
 
   case 81:
-#line 224 "parser.y"
-                                                                                  {if_end_goto();}
-#line 1845 "y.tab.c"
+#line 223 "parser.y"
+                                                                      {if_end_goto();}
+#line 1844 "y.tab.c"
     break;
 
   case 82:
-#line 224 "parser.y"
-                                                                                                                                  {if_end_label();}
-#line 1851 "y.tab.c"
+#line 223 "parser.y"
+                                                                                                                      {if_end_label();}
+#line 1850 "y.tab.c"
     break;
 
   case 85:
-#line 231 "parser.y"
-                                    {iter_label();}
-#line 1857 "y.tab.c"
+#line 230 "parser.y"
+                        {iter_label();}
+#line 1856 "y.tab.c"
     break;
 
   case 86:
-#line 231 "parser.y"
-                                                                      {if_not_goto();}
-#line 1863 "y.tab.c"
+#line 230 "parser.y"
+                                                          {if_not_goto();}
+#line 1862 "y.tab.c"
     break;
 
   case 87:
-#line 231 "parser.y"
-                                                                                                     {iter_loop_label();}
-#line 1869 "y.tab.c"
+#line 230 "parser.y"
+                                                                                         {iter_loop_label();}
+#line 1868 "y.tab.c"
     break;
 
   case 88:
-#line 232 "parser.y"
-                                                 {iter_label();}
-#line 1875 "y.tab.c"
+#line 231 "parser.y"
+                                     {iter_label();}
+#line 1874 "y.tab.c"
     break;
 
   case 89:
-#line 232 "parser.y"
-                                                                                   {if_not_goto();}
-#line 1881 "y.tab.c"
+#line 231 "parser.y"
+                                                                       {if_not_goto();}
+#line 1880 "y.tab.c"
     break;
 
   case 90:
-#line 232 "parser.y"
-                                                                                                                                {iter_loop_label();}
-#line 1887 "y.tab.c"
+#line 231 "parser.y"
+                                                                                                                    {iter_loop_label();}
+#line 1886 "y.tab.c"
     break;
 
   case 91:
-#line 233 "parser.y"
-                          {iter_label();}
-#line 1893 "y.tab.c"
+#line 232 "parser.y"
+              {iter_label();}
+#line 1892 "y.tab.c"
     break;
 
   case 92:
-#line 233 "parser.y"
-                                                                                   {if_not_goto(); iter_loop_label();}
-#line 1899 "y.tab.c"
+#line 232 "parser.y"
+                                                                       {if_not_goto(); iter_loop_label();}
+#line 1898 "y.tab.c"
     break;
 
   case 94:
-#line 236 "parser.y"
-                                                          {
-				if(yyvsp[0] == 5 && get_identifier_type(cur_function) == 'i') {
+#line 235 "parser.y"
+                                              {
+                if(yyvsp[0] == 5 && get_identifier_type(cur_function) == 'i') {
 
-				} else if(yyvsp[0] == 6 && get_identifier_type(cur_function) == 'c') {
+                } else if(yyvsp[0] == 6 && get_identifier_type(cur_function) == 'c') {
 
-				} else if(!(yyvsp[0] == 127 && get_identifier_type(cur_function) == 'v')){
-					puts("ERROR: RETURN Type mismatch!");
-					yyerror(cur_function);
-				}
-			}
-#line 1914 "y.tab.c"
+                } else if(!(yyvsp[0] == 127 && get_identifier_type(cur_function) == 'v')){
+                    puts("ERROR: RETURN Type mismatch!");
+                    yyerror(cur_function);
+                }
+            }
+#line 1913 "y.tab.c"
     break;
 
   case 95:
-#line 248 "parser.y"
-                              {yyval = 127;}
-#line 1920 "y.tab.c"
+#line 247 "parser.y"
+                  {yyval = 127;}
+#line 1919 "y.tab.c"
     break;
 
   case 96:
-#line 249 "parser.y"
-                                         {yyval = yyvsp[-1];}
-#line 1926 "y.tab.c"
+#line 248 "parser.y"
+                             {yyval = yyvsp[-1];}
+#line 1925 "y.tab.c"
     break;
 
   case 98:
-#line 255 "parser.y"
-                                                     { insV(); }
-#line 1932 "y.tab.c"
+#line 254 "parser.y"
+                                         { insV(); }
+#line 1931 "y.tab.c"
     break;
 
   case 103:
-#line 268 "parser.y"
-                                                     {
-				if(yyvsp[-1] != yyvsp[0]) {
-					printf("ERROR: Type Mismatch.\n");
-					yyerror("");
-				} else if(yyvsp[-1] == 5) {
-					yyval = 5;
-				} else if(yyvsp[-1] == 6) {
-					yyval = 6;
-				}
-			}
-#line 1947 "y.tab.c"
+#line 267 "parser.y"
+                                         {
+                if(yyvsp[-1] != yyvsp[0]) {
+                    printf("ERROR: Type Mismatch.\n");
+                    yyerror("");
+                } else if(yyvsp[-1] == 5) {
+                    yyval = 5;
+                } else if(yyvsp[-1] == 6) {
+                    yyval = 6;
+                }
+            }
+#line 1946 "y.tab.c"
     break;
 
   case 104:
-#line 278 "parser.y"
-                                            {
-				// reassign_TAC();
-				yyval = yyvsp[0];
-			}
-#line 1956 "y.tab.c"
+#line 277 "parser.y"
+                                {
+                // reassign_TAC();
+                yyval = yyvsp[0];
+            }
+#line 1955 "y.tab.c"
     break;
 
   case 105:
-#line 284 "parser.y"
-                                                {
-				reassign_TAC();
-				yyval = yyvsp[0];
-			}
-#line 1965 "y.tab.c"
+#line 283 "parser.y"
+                                    {
+                reassign_TAC();
+                yyval = yyvsp[0];
+            }
+#line 1964 "y.tab.c"
     break;
 
   case 106:
-#line 288 "parser.y"
-                                             {val_push("+");}
-#line 1971 "y.tab.c"
+#line 287 "parser.y"
+                                 {val_push("+");}
+#line 1970 "y.tab.c"
     break;
 
   case 107:
-#line 288 "parser.y"
-                                                                         {
-				TAC_assign();
-				yyval = yyvsp[-1];
-			}
-#line 1980 "y.tab.c"
+#line 287 "parser.y"
+                                                             {
+                TAC_assign();
+                yyval = yyvsp[-1];
+            }
+#line 1979 "y.tab.c"
     break;
 
   case 108:
-#line 292 "parser.y"
-                                                {val_push("-");}
-#line 1986 "y.tab.c"
+#line 291 "parser.y"
+                                    {val_push("-");}
+#line 1985 "y.tab.c"
     break;
 
   case 109:
-#line 292 "parser.y"
-                                                                            {
-				TAC_assign();
-				yyval = yyvsp[-1];
-			}
-#line 1995 "y.tab.c"
+#line 291 "parser.y"
+                                                                {
+                TAC_assign();
+                yyval = yyvsp[-1];
+            }
+#line 1994 "y.tab.c"
     break;
 
   case 110:
-#line 296 "parser.y"
-                                                   {val_push("*");}
-#line 2001 "y.tab.c"
+#line 295 "parser.y"
+                                       {val_push("*");}
+#line 2000 "y.tab.c"
     break;
 
   case 111:
-#line 296 "parser.y"
-                                                                               {
-				TAC_assign();
-				yyval = yyvsp[-1];
-			}
-#line 2010 "y.tab.c"
+#line 295 "parser.y"
+                                                                   {
+                TAC_assign();
+                yyval = yyvsp[-1];
+            }
+#line 2009 "y.tab.c"
     break;
 
   case 112:
-#line 300 "parser.y"
-                                             {val_push("/");}
-#line 2016 "y.tab.c"
+#line 299 "parser.y"
+                                 {val_push("/");}
+#line 2015 "y.tab.c"
     break;
 
   case 113:
-#line 300 "parser.y"
-                                                                         {
-				yyval = yyvsp[-1];
-			}
-#line 2024 "y.tab.c"
+#line 299 "parser.y"
+                                                             {
+                yyval = yyvsp[-1];
+            }
+#line 2023 "y.tab.c"
     break;
 
   case 114:
-#line 303 "parser.y"
-                                           {val_push("/");}
-#line 2030 "y.tab.c"
+#line 302 "parser.y"
+                               {val_push("/");}
+#line 2029 "y.tab.c"
     break;
 
   case 115:
-#line 303 "parser.y"
-                                                                       {
-				TAC_assign();
-				yyval = yyvsp[-1];
-			}
-#line 2039 "y.tab.c"
+#line 302 "parser.y"
+                                                           {
+                TAC_assign();
+                yyval = yyvsp[-1];
+            }
+#line 2038 "y.tab.c"
     break;
 
   case 116:
-#line 307 "parser.y"
-                                    {val_push("+"); val_push("1");}
-#line 2045 "y.tab.c"
+#line 306 "parser.y"
+                        {val_push("+"); val_push("1");}
+#line 2044 "y.tab.c"
     break;
 
   case 117:
-#line 307 "parser.y"
-                                                                   {
-				TAC_assign();
-				yyval = 5;
-			}
-#line 2054 "y.tab.c"
+#line 306 "parser.y"
+                                                       {
+                TAC_assign();
+                yyval = 5;
+            }
+#line 2053 "y.tab.c"
     break;
 
   case 118:
-#line 311 "parser.y"
-                                    {val_push("-"); val_push("1");}
-#line 2060 "y.tab.c"
+#line 310 "parser.y"
+                        {val_push("-"); val_push("1");}
+#line 2059 "y.tab.c"
     break;
 
   case 119:
-#line 311 "parser.y"
-                                                                   {
-				TAC_assign();
-				yyval  = 5;
-			}
-#line 2069 "y.tab.c"
+#line 310 "parser.y"
+                                                       {
+                TAC_assign();
+                yyval  = 5;
+            }
+#line 2068 "y.tab.c"
     break;
 
   case 120:
-#line 317 "parser.y"
-                                                                   {
-				if(yyvsp[-1] != -98 && yyvsp[0] != -98) TAC();
-				yyval = yyvsp[-1];
-			}
-#line 2078 "y.tab.c"
+#line 316 "parser.y"
+                                                       {
+                if(yyvsp[-1] != -98 && yyvsp[0] != -98) TAC();
+                yyval = yyvsp[-1];
+            }
+#line 2077 "y.tab.c"
     break;
 
   case 121:
-#line 323 "parser.y"
-                             {val_push("||");}
-#line 2084 "y.tab.c"
+#line 322 "parser.y"
+                 {val_push("||");}
+#line 2083 "y.tab.c"
     break;
 
   case 122:
-#line 323 "parser.y"
-                                                                                        {}
-#line 2090 "y.tab.c"
+#line 322 "parser.y"
+                                                                            {}
+#line 2089 "y.tab.c"
     break;
 
   case 123:
-#line 323 "parser.y"
-                                                                                            {yyval = -98;}
-#line 2096 "y.tab.c"
+#line 322 "parser.y"
+                                                                                {yyval = -98;}
+#line 2095 "y.tab.c"
     break;
 
   case 124:
-#line 326 "parser.y"
-                                                                           {
-				if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
-				yyval = yyvsp[-1];
-			}
-#line 2105 "y.tab.c"
+#line 325 "parser.y"
+                                                               {
+                if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
+                yyval = yyvsp[-1];
+            }
+#line 2104 "y.tab.c"
     break;
 
   case 125:
-#line 332 "parser.y"
-                              {val_push("&&");}
-#line 2111 "y.tab.c"
+#line 331 "parser.y"
+                  {val_push("&&");}
+#line 2110 "y.tab.c"
     break;
 
   case 127:
-#line 333 "parser.y"
-                          {yyval = -98;}
-#line 2117 "y.tab.c"
+#line 332 "parser.y"
+              {yyval = -98;}
+#line 2116 "y.tab.c"
     break;
 
   case 129:
-#line 337 "parser.y"
-                                             {
-				yyval = yyvsp[0];
-			}
-#line 2125 "y.tab.c"
+#line 336 "parser.y"
+                                 {
+                yyval = yyvsp[0];
+            }
+#line 2124 "y.tab.c"
     break;
 
   case 130:
-#line 342 "parser.y"
-                                                                    {
-				{
-					if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
-				}
-				if(yyvsp[-1] == yyvsp[0]) {
-					yyval = yyvsp[-1];
-				}
-			}
-#line 2138 "y.tab.c"
+#line 341 "parser.y"
+                                                        {
+                {
+                    if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
+                }
+                if(yyvsp[-1] == yyvsp[0]) {
+                    yyval = yyvsp[-1];
+                }
+            }
+#line 2137 "y.tab.c"
     break;
 
   case 131:
-#line 352 "parser.y"
-                                                              {
-				yyval = yyvsp[0];
-			}
-#line 2146 "y.tab.c"
+#line 351 "parser.y"
+                                                  {
+                yyval = yyvsp[0];
+            }
+#line 2145 "y.tab.c"
     break;
 
   case 132:
-#line 355 "parser.y"
-                          {yyval = -98;}
-#line 2152 "y.tab.c"
+#line 354 "parser.y"
+              {yyval = -98;}
+#line 2151 "y.tab.c"
     break;
 
   case 133:
-#line 358 "parser.y"
-                                                {val_push(">=");}
-#line 2158 "y.tab.c"
+#line 357 "parser.y"
+                                    {val_push(">=");}
+#line 2157 "y.tab.c"
     break;
 
   case 134:
-#line 358 "parser.y"
-                                                                                       {val_push("<=");}
-#line 2164 "y.tab.c"
+#line 357 "parser.y"
+                                                                           {val_push("<=");}
+#line 2163 "y.tab.c"
     break;
 
   case 135:
-#line 358 "parser.y"
-                                                                                                                      {val_push(">");}
-#line 2170 "y.tab.c"
+#line 357 "parser.y"
+                                                                                                          {val_push(">");}
+#line 2169 "y.tab.c"
     break;
 
   case 136:
-#line 359 "parser.y"
-                                   {val_push("<");}
-#line 2176 "y.tab.c"
+#line 358 "parser.y"
+                       {val_push("<");}
+#line 2175 "y.tab.c"
     break;
 
   case 137:
-#line 359 "parser.y"
-                                                              {val_push("==");}
-#line 2182 "y.tab.c"
+#line 358 "parser.y"
+                                                  {val_push("==");}
+#line 2181 "y.tab.c"
     break;
 
   case 138:
-#line 359 "parser.y"
-                                                                                            {val_push("!=");}
-#line 2188 "y.tab.c"
+#line 358 "parser.y"
+                                                                                {val_push("!=");}
+#line 2187 "y.tab.c"
     break;
 
   case 139:
-#line 362 "parser.y"
-                                                            {
-				TAC();
-				if(yyvsp[-2] == yyvsp[0])
-					yyval = yyvsp[-2];
-				else {
-					printf("ERROR: Type mismatch.\n");
-					yyerror("");
-				}
-			}
-#line 2202 "y.tab.c"
+#line 361 "parser.y"
+                                                {
+                TAC();
+                if(yyvsp[-2] == yyvsp[0])
+                    yyval = yyvsp[-2];
+                else {
+                    printf("ERROR: Type mismatch.\n");
+                    yyerror("");
+                }
+            }
+#line 2201 "y.tab.c"
     break;
 
   case 140:
-#line 371 "parser.y"
-                               {yyval = yyvsp[0];}
-#line 2208 "y.tab.c"
+#line 370 "parser.y"
+                   {yyval = yyvsp[0];}
+#line 2207 "y.tab.c"
     break;
 
   case 141:
-#line 374 "parser.y"
-                              {val_push("+");}
-#line 2214 "y.tab.c"
+#line 373 "parser.y"
+                  {val_push("+");}
+#line 2213 "y.tab.c"
     break;
 
   case 142:
-#line 375 "parser.y"
-                                   {val_push("-");}
-#line 2220 "y.tab.c"
+#line 374 "parser.y"
+                       {val_push("-");}
+#line 2219 "y.tab.c"
     break;
 
   case 143:
-#line 378 "parser.y"
-                                            {
-				TAC();
-				if(yyvsp[-2] == yyvsp[0])
-					yyval = yyvsp[-2];
-				else {
-					printf("ERROR: Type mismatch");
-					yyerror("");
-				};
-			}
-#line 2234 "y.tab.c"
+#line 377 "parser.y"
+                                {
+                TAC();
+                if(yyvsp[-2] == yyvsp[0])
+                    yyval = yyvsp[-2];
+                else {
+                    printf("ERROR: Type mismatch");
+                    yyerror("");
+                };
+            }
+#line 2233 "y.tab.c"
     break;
 
   case 144:
-#line 387 "parser.y"
-                                 {yyval = yyvsp[0];}
-#line 2240 "y.tab.c"
+#line 386 "parser.y"
+                     {yyval = yyvsp[0];}
+#line 2239 "y.tab.c"
     break;
 
   case 145:
-#line 390 "parser.y"
-                                         {val_push("*");}
-#line 2246 "y.tab.c"
+#line 389 "parser.y"
+                             {val_push("*");}
+#line 2245 "y.tab.c"
     break;
 
   case 146:
-#line 390 "parser.y"
-                                                                  {val_push("/");}
-#line 2252 "y.tab.c"
+#line 389 "parser.y"
+                                                      {val_push("/");}
+#line 2251 "y.tab.c"
     break;
 
   case 147:
-#line 390 "parser.y"
-                                                                                            {val_push("%");}
-#line 2258 "y.tab.c"
+#line 389 "parser.y"
+                                                                                {val_push("%");}
+#line 2257 "y.tab.c"
     break;
 
   case 148:
-#line 393 "parser.y"
-                                    {yyval = yyvsp[0];}
-#line 2264 "y.tab.c"
+#line 392 "parser.y"
+                        {yyval = yyvsp[0];}
+#line 2263 "y.tab.c"
     break;
 
   case 150:
-#line 396 "parser.y"
-                                     {
-				// check identifire type and return;
-				val_push(cur_identifier);
-				
-				char type = get_identifier_type(cur_identifier);
-				if(type == 'i') yyval = 5;
-				if(type == 'c') yyval = 6;
-			}
-#line 2277 "y.tab.c"
+#line 395 "parser.y"
+                         {
+                // check identifire type and return;
+                val_push(cur_identifier);
+                
+                char type = get_identifier_type(cur_identifier);
+                if(type == 'i') yyval = 5;
+                if(type == 'c') yyval = 6;
+            }
+#line 2276 "y.tab.c"
     break;
 
   case 151:
-#line 404 "parser.y"
-                                                  {
-				if(yyvsp[0] == 5 || yyvsp[-1] == 5) 
-					yyval = 5;
-				else 
-					printf("ERROR: Type Mismatch");
-					yyerror("");
-			}
-#line 2289 "y.tab.c"
+#line 403 "parser.y"
+                                      {
+                if(yyvsp[0] == 5 || yyvsp[-1] == 5) 
+                    yyval = 5;
+                else 
+                    printf("ERROR: Type Mismatch");
+                    yyerror("");
+            }
+#line 2288 "y.tab.c"
     break;
 
   case 153:
-#line 414 "parser.y"
-                                         {if( yyvsp[0] == 5) yyval = 5;}
-#line 2295 "y.tab.c"
+#line 413 "parser.y"
+                             {if( yyvsp[0] == 5) yyval = 5;}
+#line 2294 "y.tab.c"
     break;
 
   case 154:
-#line 417 "parser.y"
-                                             {
-				if(yyvsp[-1] == 5) yyval = 5;
-			}
-#line 2303 "y.tab.c"
+#line 416 "parser.y"
+                                 {
+                if(yyvsp[-1] == 5) yyval = 5;
+            }
+#line 2302 "y.tab.c"
     break;
 
   case 155:
-#line 420 "parser.y"
-                               {
-				if(yyvsp[0] == 5) yyval = 5;
-			}
-#line 2311 "y.tab.c"
+#line 419 "parser.y"
+                   {
+                if(yyvsp[0] == 5) yyval = 5;
+            }
+#line 2310 "y.tab.c"
     break;
 
   case 156:
-#line 423 "parser.y"
-                                   {
-				if(yyvsp[0] == 5) yyval = 5;
-			}
-#line 2319 "y.tab.c"
+#line 422 "parser.y"
+                       {
+                if(yyvsp[0] == 5) yyval = 5;
+            }
+#line 2318 "y.tab.c"
     break;
 
   case 157:
-#line 428 "parser.y"
-                                         {strcpy(cur_function, cur_identifier);}
-#line 2325 "y.tab.c"
+#line 427 "parser.y"
+                             {strcpy(cur_function, cur_identifier);}
+#line 2324 "y.tab.c"
     break;
 
   case 158:
-#line 428 "parser.y"
-                                                                                               {
-				char type = get_identifier_type(cur_function);
-				fprintf(fp, "goto %s\n", cur_function);
-				if(type == 'i') yyval = 5;
-				if(type == 'c') yyval = 6;
+#line 427 "parser.y"
+                                                                                   {
+                char type = get_identifier_type(cur_function);
+                fprintf(fp, "goto %s\n", cur_function);
+                if(type == 'i') yyval = 5;
+                if(type == 'c') yyval = 6;
 
-				if(!verify_funccall_cnt(cur_function, funccall_params_cnt)) {
-					puts("ERROR: Function Call arguments count mismatch");
-					yyerror(cur_function);
-				}
-				char tmp[100] = {0};
-				sprintf(tmp, "%d", funccall_params_cnt);
-				fprintf(fp, "pop_params %s\n", tmp);
-			}
-#line 2344 "y.tab.c"
+                if(!verify_funccall_cnt(cur_function, funccall_params_cnt)) {
+                    puts("ERROR: Function Call arguments count mismatch");
+                    yyerror(cur_function);
+                }
+                char tmp[100] = {0};
+                sprintf(tmp, "%d", funccall_params_cnt);
+                fprintf(fp, "pop_params %s\n", tmp);
+            }
+#line 2343 "y.tab.c"
     break;
 
   case 161:
-#line 447 "parser.y"
-                          {funccall_params_cnt = 0;}
-#line 2350 "y.tab.c"
+#line 446 "parser.y"
+              {funccall_params_cnt = 0;}
+#line 2349 "y.tab.c"
     break;
 
   case 162:
-#line 447 "parser.y"
-                                                                {fprintf(fp, "push_param %s\n", val_stack[valtop].value); check_arg_type(yyvsp[0], cur_function, funccall_params_cnt);funccall_params_cnt++;}
-#line 2356 "y.tab.c"
+#line 446 "parser.y"
+                                                    {fprintf(fp, "push_param %s\n", val_stack[valtop].value); check_arg_type(yyvsp[0], cur_function, funccall_params_cnt);funccall_params_cnt++;}
+#line 2355 "y.tab.c"
     break;
 
   case 164:
-#line 450 "parser.y"
-                                         {fprintf(fp, "push_param %s\n", val_stack[valtop].value); check_arg_type(yyvsp[0], cur_function, funccall_params_cnt);;funccall_params_cnt++;}
-#line 2362 "y.tab.c"
+#line 449 "parser.y"
+                             {fprintf(fp, "push_param %s\n", val_stack[valtop].value); check_arg_type(yyvsp[0], cur_function, funccall_params_cnt);;funccall_params_cnt++;}
+#line 2361 "y.tab.c"
     break;
 
   case 167:
-#line 454 "parser.y"
-                                        { insV(); constant_TAC(); yyval=5;}
-#line 2368 "y.tab.c"
+#line 453 "parser.y"
+                            { insV(); constant_TAC(); yyval=5;}
+#line 2367 "y.tab.c"
     break;
 
   case 168:
-#line 455 "parser.y"
-                                                { insV(); constant_TAC();}
-#line 2374 "y.tab.c"
+#line 454 "parser.y"
+                                { insV(); constant_TAC();}
+#line 2373 "y.tab.c"
     break;
 
   case 169:
-#line 456 "parser.y"
-                                       { insV(); constant_TAC(); yyval=6;}
-#line 2380 "y.tab.c"
+#line 455 "parser.y"
+                           { insV(); constant_TAC(); yyval=6;}
+#line 2379 "y.tab.c"
     break;
 
 
-#line 2384 "y.tab.c"
+#line 2383 "y.tab.c"
 
       default: break;
     }
@@ -2612,7 +2611,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 458 "parser.y"
+#line 457 "parser.y"
 
 
 extern FILE *yyin;
@@ -2631,162 +2630,159 @@ void print_constant_table();
 void print_symbol_table();
 void print_func_table();
 void val_push(char* str) {
-	strcpy(val_stack[++valtop].value, str);
+    strcpy(val_stack[++valtop].value, str);
 }
 
 void if_end_label() {
-	char code[100] = {0};
-	strcpy(code, "L");
-	sprintf(code + 1, "%d", labl_stack[lbltop].id);
-	printf(_RED "%s: \n" _RESET, code);
-	fprintf(fp, "%s: \n", code);
-	lbltop--;
+    char code[100] = {0};
+    strcpy(code, "L");
+    sprintf(code + 1, "%d", labl_stack[lbltop].id);
+    printf(_RED "%s: \n" _RESET, code);
+    fprintf(fp, "%s: \n", code);
+    lbltop--;
 }
 
 void if_not_goto() {
-	char code[100] = {0};
-	strcpy(code, "L");
-	sprintf(code + 1, "%d", L_cnt);
-	printf(_RED "if not %s goto %s\n" _RESET, val_stack[valtop].value, code);
-	fprintf(fp, "if not %s goto %s\n", val_stack[valtop].value, code);
-	labl_stack[++lbltop].id = L_cnt++;
+    char code[100] = {0};
+    strcpy(code, "L");
+    sprintf(code + 1, "%d", L_cnt);
+    printf(_RED "if not %s goto %s\n" _RESET, val_stack[valtop].value, code);
+    fprintf(fp, "if not %s goto %s\n", val_stack[valtop].value, code);
+    labl_stack[++lbltop].id = L_cnt++;
 }
 
 void if_end_goto() {
-	char code[100] = {0};
-	strcpy(code, "L");
-	sprintf(code + 1, "%d", L_cnt);
-	printf(_RED "goto %s\n" _RESET, code);
-	fprintf(fp,  "goto %s\n" , code);
-	code[0] = 'L';
-	sprintf(code + 1, "%d", labl_stack[lbltop].id);
-	printf(_RED "%s: \n" _RESET, code);
-	fprintf(fp, "%s: \n", code);
-	labl_stack[lbltop].id = L_cnt++;
+    char code[100] = {0};
+    strcpy(code, "L");
+    sprintf(code + 1, "%d", L_cnt);
+    printf(_RED "goto %s\n" _RESET, code);
+    fprintf(fp,  "goto %s\n" , code);
+    code[0] = 'L';
+    sprintf(code + 1, "%d", labl_stack[lbltop].id);
+    printf(_RED "%s: \n" _RESET, code);
+    fprintf(fp, "%s: \n", code);
+    labl_stack[lbltop].id = L_cnt++;
 }
 
 void iter_label() {
-	char code[100] = {0};
-	strcpy(code, "L");
-	sprintf(code + 1, "%d", L_cnt);
-	fprintf(fp, "%s:\n", code);
-	labl_stack[++lbltop].id = L_cnt++;
+    char code[100] = {0};
+    strcpy(code, "L");
+    sprintf(code + 1, "%d", L_cnt);
+    fprintf(fp, "%s:\n", code);
+    labl_stack[++lbltop].id = L_cnt++;
 }
 
 void iter_loop_label()  {
-	char code[100] = {0};
-	strcpy(code, "L");
-	sprintf(code + 1, "%d", labl_stack[lbltop-1].id);
-	fprintf(fp, "goto %s\n", code);
-	sprintf(code + 1, "%d", labl_stack[lbltop].id);
-	fprintf(fp, "%s: \n", code);
-	lbltop -= 2;
+    char code[100] = {0};
+    strcpy(code, "L");
+    sprintf(code + 1, "%d", labl_stack[lbltop-1].id);
+    fprintf(fp, "goto %s\n", code);
+    sprintf(code + 1, "%d", labl_stack[lbltop].id);
+    fprintf(fp, "%s: \n", code);
+    lbltop -= 2;
 }
 
 void identifier_TAC()  {
-	char code[100] = {0};
-	
-	strcpy(code, "T");
-	sprintf(code + 1, "%d", T_cnt);
-	printf(_RED "%s = %s\n" _RESET , code, cur_identifier);	
-	fprintf(fp, " %s = %s\n" , code, cur_identifier);
-	T_cnt++;
-	val_push(code);	
+    char code[100] = {0};
+    strcpy(code, "T");
+    sprintf(code + 1, "%d", T_cnt);
+    printf(_RED "= %s NULL %s\n" _RESET, cur_identifier, code);
+    fprintf(fp, "= %s NULL %s\n" , cur_identifier, code);
+    T_cnt++;
+    val_push(code);
 }
 void constant_TAC() {
-	char code[100] = {0};
-	strcpy(code, "T");
-	sprintf(code + 1, "%d", T_cnt);
-	printf(_RED "%s = %s\n" _RESET , code, curval);	
-	fprintf(fp,  " %s = %s\n"  , code, curval);
-	T_cnt++;
-	val_push(code);	
+    char code[100] = {0};
+    strcpy(code, "T");
+    sprintf(code + 1, "%d", T_cnt);
+    printf(_RED "= %s NULL %s\n" _RESET, curval , code);
+    fprintf(fp, "= %s NULL %s\n"  , curval , code);
+    T_cnt++;
+    val_push(code);
 }
 
 void reassign_TAC() {
-	if(valtop-1 < 0) return;
-	// if(val_stack[valtop].value[0] == 0 || val_stack[valtop-1].value[0] == 0) return;
-	printf(_RED "%s = %s\n" _RESET, val_stack[valtop-1].value, val_stack[valtop].value);
-	fprintf(fp, " %s = %s\n", val_stack[valtop-1].value, val_stack[valtop].value);
-	valtop -= 2;
+    if(valtop-1 < 0) return;
+    // if(val_stack[valtop].value[0] == 0 || val_stack[valtop-1].value[0] == 0) return;
+    printf(_RED "= %s NULL %s\n" _RESET, val_stack[valtop].value, val_stack[valtop-1].value);
+    fprintf(fp, "= %s NULL %s\n", val_stack[valtop].value, val_stack[valtop-1].value);
+    valtop -= 2;
 }
 
 void TAC() {
-	char code[100] = {0};
-	strcpy(code, "T");
-	if(valtop-2 < 0) return;
-	sprintf(code + 1, "%d", T_cnt);
-	//printf(_RED "%s = %s %s %s\n" _RESET, code, val_stack[valtop-2].value, val_stack[valtop-1].value, val_stack[valtop].value);
-	printf("\tOp \tArg1 \tArg2 \tResult\n");
-	printf(_RED "\t%s \t%s \t%s \t%s\n", val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
-	fprintf(fp, "%s = %s %s %s\n", code, val_stack[valtop-2].value, val_stack[valtop-1].value, val_stack[valtop].value);
-	valtop -= 2;
-	strcpy(val_stack[valtop].value, code);
-	T_cnt++;
+    char code[100] = {0};
+    strcpy(code, "T");
+    if(valtop-2 < 0) return;
+    sprintf(code + 1, "%d", T_cnt);
+    printf(_RED "%s %s %s %s\n" _RESET, val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    fprintf(fp, "%s %s %s %s\n", val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    valtop -= 2;
+    strcpy(val_stack[valtop].value, code);
+    T_cnt++;
 }
 void TAC_assign() {
-	char code[100] = {0};
-	strcpy(code, "T");
+    char code[100] = {0};
+    strcpy(code, "T");
 
-	sprintf(code + 1, "%d", T_cnt);
-	printf(_RED "%s = %s %s %s\n" _RESET, code, val_stack[valtop-2].value, val_stack[valtop-1].value, val_stack[valtop].value);
-	fprintf(fp, "%s = %s %s %s\n", val_stack[valtop-2].value, val_stack[valtop-2].value, val_stack[valtop-1].value, val_stack[valtop].value);
-	valtop -= 2;
+    sprintf(code + 1, "%d", T_cnt);
+    printf(_RED "%s %s %s %s\n" _RESET, val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    fprintf(fp, "%s %s %s %s\n", val_stack[valtop-1].value, val_stack[valtop-2].value, val_stack[valtop].value, code);
+    valtop -= 2;
 }
 
 int main(int argc , char **argv)
 {
-	fp = fopen("TAC.txt", "w");
-	yyin = fopen(argv[1], "r");
-	yyparse();
-	if((bbracketsopen-bbracketsclose)){
+    fp = fopen("TAC.txt", "w");
+    yyin = fopen(argv[1], "r");
+    yyparse();
+    if((bbracketsopen-bbracketsclose)){
         printf("ERROR: brackets error [\n");
-		// yyerror("ERROR: brackets error [\n");
-		flag = 1;
+        // yyerror("ERROR: brackets error [\n");
+        flag = 1;
     }
     if((fbracketsopen-fbracketsclose)){
         printf("ERROR: brackets error {\n");
-		// yyerror("ERROR: brackets error {\n");
-		flag = 1;
+        // yyerror("ERROR: brackets error {\n");
+        flag = 1;
     }
     if((cbracketsopen-cbracketsclose)){
         printf("ERROR: brackets error (\n");
-		// yyerror("ERROR: brackets error (\n");
-		flag = 1;
+        // yyerror("ERROR: brackets error (\n");
+        flag = 1;
     }
 
 
-	if(flag == 0)
-	{
-		printf("Status: Parsing Complete - Valid\n");
-		printf("SYMBOL TABLE\n");
-		printf("%30s %s\n", " ", "------------");
-		print_symbol_table();
-		printf("\n\nCONSTANT TABLE\n");
-		printf("%30s %s\n", " ", "--------------");
-		print_constant_table();
-		printf("%30s %s\n", " ", "--------------");
-		print_func_table();
-	}
-	fclose(fp);
+    if(flag == 0)
+    {
+        printf("Status: Parsing Complete - Valid\n");
+        printf("SYMBOL TABLE\n");
+        printf("%30s %s\n", " ", "------------");
+        print_symbol_table();
+        printf("\n\nCONSTANT TABLE\n");
+        printf("%30s %s\n", " ", "--------------");
+        print_constant_table();
+        printf("%30s %s\n", " ", "--------------");
+        print_func_table();
+    }
+    fclose(fp);
 }
 
 
 void yyerror(char *s)
 {
-	puts("=========================================================================");
-	printf("Parsing Failed at line no: %d\n", yylineno);
-	printf("Error: %s\n", yytext);
-	// exit(0);
-	// flag=1;
+    puts("=========================================================================");
+    printf("Parsing Failed at line no: %d\n", yylineno);
+    printf("Error: %s\n", yytext);
+    // exit(0);
+    // flag=1;
 }
 
 void ins()
 {
-	insert_symbol_table_type(Match_str,Match_type);
+    insert_symbol_table_type(Match_str,Match_type);
 }
 
 void insV()
 {
-	insert_symbol_table_value(Match_str,curval);
-}	
+    insert_symbol_table_value(Match_str,curval);
+} 

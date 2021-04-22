@@ -402,7 +402,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
 "."
 
 {keywords_1}|{keywords_2} {
-    printf("%s is a keyword\n", yytext);
+    // printf("%s is a keyword\n", yytext);
 	if(strcmp(yytext, "auto") == 0){
 		strcpy(Match_type, yytext);
 		insert_symbolTable(yytext, "KEYWORD");
@@ -552,7 +552,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
 }
 
 {identifier} {
-    printf("%s is a identifier\n", yytext);
+    // printf("%s is a identifier\n", yytext);
 	strcpy(Match_str, yytext);
 	strcpy(cur_identifier, yytext);
 	insert_symbolTable(yytext, "Identifier");
@@ -560,7 +560,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
 }
 
 {numerical_constants} {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	strcpy(curval, yytext);
 	// insert_constantsTable(yytext, "Constant");
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -571,7 +571,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
     }
 
 {char_constants} {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	// insert_constantsTable(yytext, "Constant");
 	strcpy(curval, yytext);
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -582,7 +582,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
     }
 
 {string_constants} {
-    printf("%s is a constant\n", yytext);
+    // printf("%s is a constant\n", yytext);
 	// insert_constantsTable(yytext, "Constant");
 	strcpy(curval, yytext);
 	for(int i = 0; i < strlen(yytext); i++) {
@@ -594,7 +594,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
 
 
 {special_symbols} {
-    printf("%s is a special symbol\n", yytext);
+    // printf("%s is a special symbol\n", yytext);
 	
 	if(yytext[0] == ';') { return(';'); }
 	else
@@ -628,7 +628,7 @@ operators {unary_operators}|{special_operators}|{logical_operators}|{relational_
 
 
 {unary_operators}|{special_operators}|{logical_operators}|{relational_operators}|{bitwise_operators}|{binary_operators}|{assignment_operators} {
-    printf("%s is an operator\n", yytext);
+    // printf("%s is an operator\n", yytext);
 	if(strcmp(yytext, "++") == 0) return increment;
 	else if(strcmp(yytext, "--") == 0) return decrement;
 	else if(strcmp(yytext, "<<") == 0) return leftshift;
