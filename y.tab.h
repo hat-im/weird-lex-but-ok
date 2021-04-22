@@ -50,42 +50,42 @@ extern int yydebug;
   enum yytokentype
   {
     IF = 258,
-    INT = 259,
-    CHAR = 260,
-    FLOAT = 261,
-    DOUBLE = 262,
-    LONG = 263,
-    SHORT = 264,
-    SIGNED = 265,
-    UNSIGNED = 266,
-    STRUCT = 267,
-    RETURN = 268,
-    MAIN = 269,
-    VOID = 270,
-    WHILE = 271,
-    FOR = 272,
-    DO = 273,
-    BREAK = 274,
-    ENDIF = 275,
-    AUTO = 276,
-    SWITCH = 277,
-    CASE = 278,
-    ENUM = 279,
-    REG = 280,
-    TYPEDEF = 281,
-    EXTERN = 282,
-    UNION = 283,
-    CONTINUE = 284,
-    STATIC = 285,
-    DEFAULT = 286,
-    GOTO = 287,
-    VOLATILE = 288,
-    CONST = 289,
-    IDENTIFIER = 290,
-    NUM_CONSTANT = 291,
-    CHAR_CONSTANT = 292,
-    STRING_CONSTANT = 293,
-    ELSE = 294,
+    ELSE = 259,
+    INT = 260,
+    CHAR = 261,
+    FLOAT = 262,
+    DOUBLE = 263,
+    LONG = 264,
+    SHORT = 265,
+    SIGNED = 266,
+    UNSIGNED = 267,
+    STRUCT = 268,
+    RETURN = 269,
+    MAIN = 270,
+    VOID = 271,
+    WHILE = 272,
+    FOR = 273,
+    DO = 274,
+    BREAK = 275,
+    ENDIF = 276,
+    AUTO = 277,
+    SWITCH = 278,
+    CASE = 279,
+    ENUM = 280,
+    REG = 281,
+    TYPEDEF = 282,
+    EXTERN = 283,
+    UNION = 284,
+    CONTINUE = 285,
+    STATIC = 286,
+    DEFAULT = 287,
+    GOTO = 288,
+    VOLATILE = 289,
+    CONST = 290,
+    IDENTIFIER = 291,
+    NUM_CONSTANT = 292,
+    CHAR_CONSTANT = 293,
+    STRING_CONSTANT = 294,
     leftshiftAssignment = 295,
     rightshiftAssignment = 296,
     xorAssignment = 297,
@@ -97,69 +97,69 @@ extern int yydebug;
     additionAssignment = 303,
     subtractionAssignment = 304,
     assignment = 305,
-    or = 306,
-    and = 307,
-    bitOr = 308,
-    xor = 309,
-    bitAnd = 310,
-    equality = 311,
-    inequality = 312,
-    lessthanAssignment = 313,
-    lessthan = 314,
-    greaterthanAssignment = 315,
-    greaterthan = 316,
-    leftshift = 317,
-    rightshift = 318,
-    add = 319,
-    subtract = 320,
-    multiplication = 321,
-    divide = 322,
-    modulo = 323,
-    SIZEOF = 324,
-    negation = 325,
-    not = 326,
+    SIZEOF = 306,
+    negation = 307,
+    not = 308,
+    or = 309,
+    and = 310,
+    bitOr = 311,
+    xor = 312,
+    bitAnd = 313,
+    equality = 314,
+    inequality = 315,
+    lessthanAssignment = 316,
+    lessthan = 317,
+    greaterthanAssignment = 318,
+    greaterthan = 319,
+    leftshift = 320,
+    rightshift = 321,
+    add = 322,
+    subtract = 323,
+    multiplication = 324,
+    divide = 325,
+    modulo = 326,
     increment = 327,
     decrement = 328
   };
 #endif
 /* Tokens.  */
 #define IF 258
-#define INT 259
-#define CHAR 260
-#define FLOAT 261
-#define DOUBLE 262
-#define LONG 263
-#define SHORT 264
-#define SIGNED 265
-#define UNSIGNED 266
-#define STRUCT 267
-#define RETURN 268
-#define MAIN 269
-#define VOID 270
-#define WHILE 271
-#define FOR 272
-#define DO 273
-#define BREAK 274
-#define ENDIF 275
-#define AUTO 276
-#define SWITCH 277
-#define CASE 278
-#define ENUM 279
-#define REG 280
-#define TYPEDEF 281
-#define EXTERN 282
-#define UNION 283
-#define CONTINUE 284
-#define STATIC 285
-#define DEFAULT 286
-#define GOTO 287
-#define VOLATILE 288
-#define CONST 289
-#define IDENTIFIER 290
-#define NUM_CONSTANT 291
-#define CHAR_CONSTANT 292
-#define STRING_CONSTANT 293
-#define ELSE 294
+#define ELSE 259
+#define INT 260
+#define CHAR 261
+#define FLOAT 262
+#define DOUBLE 263
+#define LONG 264
+#define SHORT 265
+#define SIGNED 266
+#define UNSIGNED 267
+#define STRUCT 268
+#define RETURN 269
+#define MAIN 270
+#define VOID 271
+#define WHILE 272
+#define FOR 273
+#define DO 274
+#define BREAK 275
+#define ENDIF 276
+#define AUTO 277
+#define SWITCH 278
+#define CASE 279
+#define ENUM 280
+#define REG 281
+#define TYPEDEF 282
+#define EXTERN 283
+#define UNION 284
+#define CONTINUE 285
+#define STATIC 286
+#define DEFAULT 287
+#define GOTO 288
+#define VOLATILE 289
+#define CONST 290
+#define IDENTIFIER 291
+#define NUM_CONSTANT 292
+#define CHAR_CONSTANT 293
+#define STRING_CONSTANT 294
 #define leftshiftAssignment 295
 #define rightshiftAssignment 296
 #define xorAssignment 297
@@ -171,27 +171,27 @@ extern int yydebug;
 #define additionAssignment 303
 #define subtractionAssignment 304
 #define assignment 305
-#define or 306
-#define and 307
-#define bitOr 308
-#define xor 309
-#define bitAnd 310
-#define equality 311
-#define inequality 312
-#define lessthanAssignment 313
-#define lessthan 314
-#define greaterthanAssignment 315
-#define greaterthan 316
-#define leftshift 317
-#define rightshift 318
-#define add 319
-#define subtract 320
-#define multiplication 321
-#define divide 322
-#define modulo 323
-#define SIZEOF 324
-#define negation 325
-#define not 326
+#define SIZEOF 306
+#define negation 307
+#define not 308
+#define or 309
+#define and 310
+#define bitOr 311
+#define xor 312
+#define bitAnd 313
+#define equality 314
+#define inequality 315
+#define lessthanAssignment 316
+#define lessthan 317
+#define greaterthanAssignment 318
+#define greaterthan 319
+#define leftshift 320
+#define rightshift 321
+#define add 322
+#define subtract 323
+#define multiplication 324
+#define divide 325
+#define modulo 326
 #define increment 327
 #define decrement 328
 

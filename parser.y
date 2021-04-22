@@ -1,4 +1,4 @@
-{
+%{
     void yyerror(char* s);
     int yylex();
     #include <stdio.h>
@@ -294,6 +294,18 @@ expression_breakup
                 TAC_assign();
                 $$ = $2;
             }
+            | rightshiftAssignment {val_push(">>");} expression {
+                TAC_assign();
+                $$ = $2;
+            }
+            | leftshiftAssignment {val_push("<<");} expression {
+                TAC_assign();
+                $$ = $2;
+            }
+            | xorAssignment {val_push("^");} expression {
+                TAC_assign();
+                $$ = $2;
+            }
             | increment {val_push("+"); val_push("1");}{
                 TAC_assign();
                 $$ = 5;
@@ -339,17 +351,16 @@ regular_expression
             };
 
 regular_expression_breakup
-            : relational_operators sum_expression {
+            : RELOP sum_expression {
                 $$ = $2;
             }
             | {$$ = -98;};
 
-relational_operators 
-            : greaterthanAssignment {val_push(">=");} | lessthanAssignment {val_push("<=");}| greaterthan {val_push(">");} 
-            | lessthan {val_push("<");}| equality {val_push("==");}| inequality {val_push("!=");};
+RELOP 
+            : greaterthanAssignment {val_push(">=");} | lessthanAssignment {val_push("<=");} | greaterthan {val_push(">");} | lessthan {val_push("<");}| equality {val_push("==");}| inequality {val_push("!=");};
 
 sum_expression 
-            : sum_expression sum_operators term {
+            : sum_expression ADDOP term {
                 TAC();
                 if($1 == $3)
                     $$ = $1;
@@ -360,12 +371,11 @@ sum_expression
             }
             | term {$$ = $1;};
 
-sum_operators 
-            : add {val_push("+");};
-            | subtract {val_push("-");};
+ADDOP 
+            : add {val_push("+");} | subtract {val_push("-");};
 
 term
-            : term MULOP factor {
+            : term MULOP bit_exp {
                 TAC();
                 if($1 == $3)
                     $$ = $1;
@@ -374,13 +384,28 @@ term
                     yyerror("");
                 };
             } 
-            | factor {$$ = $1;};
+            | bit_exp {$$ = $1;};
+
+BITOP
+            : leftshift { val_push("<<");} | rightshift { val_push(">>");} | bitAnd {val_push("&");} | bitOr {val_push("|");} | xor {val_push("^");};
 
 MULOP 
             : multiplication {val_push("*");}| divide {val_push("/");} | modulo {val_push("%");};
 
 factor 
             : immutable {$$ = $1;}| mutable ;
+
+bit_exp
+            : bit_exp BITOP factor {
+                TAC();
+                if($1 == $3)
+                    $$ = $1;
+                else {
+                    printf("ERROR: Type mismatch");
+                    yyerror("");
+                };
+            }
+            | factor {$$ = $1;}
 
 mutable 
             : IDENTIFIER {
@@ -611,4 +636,4 @@ void ins()
 void insV()
 {
     insert_symbol_table_value(Match_str,curval);
-}  
+} 

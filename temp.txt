@@ -21,6 +21,9 @@ if not T9 goto L3
 + j 1 T10
 = 5 NULL T10
 = 5 NULL a
+= 1 NULL T11
+<< a T11 T12
+= T12 NULL p
 goto L2
 L3: 
 goto L0

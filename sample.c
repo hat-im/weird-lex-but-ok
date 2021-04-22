@@ -4,6 +4,7 @@ int main(){
         int j = 1 +1;
         for(j=0;j<10;j++) {
             int a=5;
+            int p = a<<1;
         }
     }
 } 
