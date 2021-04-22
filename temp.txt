@@ -1,5 +1,5 @@
 = 2 NULL T0
-= T0 NULL a
+= 2 NULL a
 = 2 NULL T1
-* a T1 T2
+* a 2 T2
 = T2 NULL p

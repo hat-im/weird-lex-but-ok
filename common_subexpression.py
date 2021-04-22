@@ -21,9 +21,8 @@ for i in list_of_lines:
             
             # write_back = op+" "+arg1+" "+arg2+" "+pointer+"\n"
             # opt.write(write_back)
-    
-           
-                   
+    #op+" "+arg1+" "+arg2+" "+res+"\n"  "="+" "+arg1+" "+"NULL"+" "+res+"\n"
+                          
         else:
             hold[result] = res
             if writen==1:
@@ -35,17 +34,4 @@ for i in list_of_lines:
             opt.write(write_back)
             
             
-        # for j in  hold.keys():
-        #     if re_written_res in j:
-        #         write_back = op+" "+pointer+" "+arg2+" "+res+"\n"
-        #         print(write_back)
-        #         opt.write(write_back)
-        #         re_written_res="temp"
-        #         writen=0
-                
-
-
-
-print(hold,"\n")
-print(pointer,"\n")
-print(re_written_res)
+ 
