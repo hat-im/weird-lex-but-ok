@@ -1,5 +1,5 @@
 function main:
- = 2 NULL T0
+= 2 NULL T0
 = T0 NULL a
 = 6 NULL T1
 = T1 NULL c

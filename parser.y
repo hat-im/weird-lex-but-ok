@@ -177,7 +177,7 @@ function_declaration
             : function_declaration_type function_declaration_param_statement;
 
 function_declaration_type
-            : type_specifier IDENTIFIER '('  { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n ", cur_function);};
+            : type_specifier IDENTIFIER '('  { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n", cur_function);};
 
 function_declaration_param_statement
             : params ')' statement;

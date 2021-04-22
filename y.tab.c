@@ -1797,7 +1797,7 @@ yyreduce:
 
   case 54:
 #line 180 "parser.y"
-                                             { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n ", cur_function);}
+                                             { params_cnt = 0; ins(); strcpy(cur_function, cur_identifier); insert_symbol_table_scope(cur_identifier, cur_scope); insert_func_table(cur_function); fprintf(fp, "function %s:\n", cur_function);}
 #line 1802 "y.tab.c"
     break;
 
