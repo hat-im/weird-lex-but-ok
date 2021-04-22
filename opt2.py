@@ -95,7 +95,7 @@ for i in list_of_lines:
             write_back=op+" "+arg1+" "+arg2+" "+res+"\n"
             ftemp.write(write_back)
             constantFoldedList.append([op,arg1,arg2,res])
-
+ftemp.close()
 print("\n")
 print("Constant folded expression - ")
 print("--------------------")
@@ -115,6 +115,42 @@ for i in constantFoldedList:
             print(i[3],"=",i[0],i[1])
 
 
+print("\n")
+print("After dead code elimination - ")
+print("------------------------------")
+flip = open("temp.txt","r")
+opt = open("common_sub.txt", "w")
+list_of_lines = flip.readlines()
+re_written_res="temp"
+hold = {}
+writen=0
+for i in list_of_lines:
+    if "function"  in i:
+        pass
+    else:
+       
+        i = i.strip("\n")
+        op,arg1,arg2,res = i.split()
+        result = op + arg1 + arg2
+        
+        if result in hold:
+            pointer = hold.get(result)
+            re_written_res = res
+            writen=1
+            
+                          
+        else:
+            hold[result] = res
+            if writen==1:
+                write_back = op+" "+pointer+" "+arg2+" "+res+"\n"
+                print(write_back)
+                writen=0
+            else:
+                write_back = op+" "+arg1+" "+arg2+" "+res+"\n"
+                print(write_back)
+            
+            opt.write(write_back)
+ 
 
 
 
