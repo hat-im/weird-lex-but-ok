@@ -1,0 +1,8 @@
+echo "Generating y.tab.h"
+yacc -d Parser.y                                                                                                                                                                               --warning=none
+echo "Generating tokeniser program"
+flex Scanner.l
+echo "Compiling lex.yy.c with y.tab.c" 
+gcc lex.yy.c y.tab.c -o parser
+echo "Generated 'parser' executable"
+
