@@ -1,9 +1,9 @@
 int main(){
     int a=2;
-    if(a==2){
-        int b=3;
-    }
-    else{
-        b=4;
-    }
+    int c = 6;
+    int d = 7;
+    int p = a+c;
+    d=a+c;
+
+
 }

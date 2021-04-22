@@ -1,5 +1,4 @@
-function main:
- = 2 NULL T0
+= 2 NULL T0
 = T0 NULL a
 = 6 NULL T1
 = T1 NULL c
@@ -7,5 +6,5 @@ function main:
 = T2 NULL d
 + a c T3
 = T3 NULL p
-+ a c T4
++ a c T3
 = T4 NULL d
