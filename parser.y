@@ -317,22 +317,22 @@ expression_breakup
 
 simp_ex 
             : and_expression simp_ex_breakup {
-                if($1 != -98 && $2 != -98) TAC();
+                if($1 != -1 && $2 != -1) TAC();
                 $$ = $1;
             };
 
 simp_ex_breakup 
-            : or {val_push("||");} and_expression simp_ex_breakup {}| {$$ = -98;};
+            : or {val_push("||");} and_expression simp_ex_breakup {}| {$$ = -1;};
 
 and_expression 
             : unary_relation_expression and_expression_breakup {
-                if($2 != -98 && $1 != -98) TAC();
+                if($2 != -1 && $1 != -1) TAC();
                 $$ = $1;
             };
 
 and_expression_breakup
             : and {val_push("&&");} unary_relation_expression and_expression_breakup
-            | {$$ = -98;};
+            | {$$ = -1;};
 
 unary_relation_expression 
             : not unary_relation_expression 
@@ -343,7 +343,7 @@ unary_relation_expression
 regular_expression 
             : sum_expression regular_expression_breakup {
                 {
-                    if($2 != -98 && $1 != -98) TAC();
+                    if($2 != -1 && $1 != -1) TAC();
                 }
                 if($1 == $2) {
                     $$ = $1;
@@ -354,7 +354,7 @@ regular_expression_breakup
             : RELOP sum_expression {
                 $$ = $2;
             }
-            | {$$ = -98;};
+            | {$$ = -1;};
 
 RELOP 
             : greaterthanAssignment {val_push(">=");} | lessthanAssignment {val_push("<=");} | greaterthan {val_push(">");} | lessthan {val_push("<");}| equality {val_push("==");}| inequality {val_push("!=");};

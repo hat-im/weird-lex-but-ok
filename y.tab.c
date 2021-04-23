@@ -2124,7 +2124,7 @@ yyreduce:
   case 126:
 #line 319 "parser.y"
                                              {
-                if(yyvsp[-1] != -98 && yyvsp[0] != -98) TAC();
+                if(yyvsp[-1] != -1 && yyvsp[0] != -1) TAC();
                 yyval = yyvsp[-1];
             }
 #line 2131 "y.tab.c"
@@ -2144,14 +2144,14 @@ yyreduce:
 
   case 129:
 #line 325 "parser.y"
-                                                                      {yyval = -98;}
+                                                                      {yyval = -1;}
 #line 2149 "y.tab.c"
     break;
 
   case 130:
 #line 328 "parser.y"
                                                                {
-                if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
+                if(yyvsp[0] != -1 && yyvsp[-1] != -1) TAC();
                 yyval = yyvsp[-1];
             }
 #line 2158 "y.tab.c"
@@ -2165,7 +2165,7 @@ yyreduce:
 
   case 133:
 #line 335 "parser.y"
-              {yyval = -98;}
+              {yyval = -1;}
 #line 2170 "y.tab.c"
     break;
 
@@ -2181,7 +2181,7 @@ yyreduce:
 #line 344 "parser.y"
                                                         {
                 {
-                    if(yyvsp[0] != -98 && yyvsp[-1] != -98) TAC();
+                    if(yyvsp[0] != -1 && yyvsp[-1] != -1) TAC();
                 }
                 if(yyvsp[-1] == yyvsp[0]) {
                     yyval = yyvsp[-1];
@@ -2200,7 +2200,7 @@ yyreduce:
 
   case 138:
 #line 357 "parser.y"
-              {yyval = -98;}
+              {yyval = -1;}
 #line 2205 "y.tab.c"
     break;
 

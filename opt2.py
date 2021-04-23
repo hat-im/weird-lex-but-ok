@@ -179,28 +179,17 @@ for i in passer:
     if(i[1].isnumeric() ):
         if (i[0]=="*" and (isPowerOfTwo(int(i[1]))) ):
             i[0]="<<"
+            t=i[1]
+            i[1]=math.log(int(t),2)
+
     if(i[2].isnumeric() ):
         if (i[0]=="*" and (isPowerOfTwo(int(i[2]))) ):
             i[0]="<<"
-       
+            t_2=i[2]
+            t_1=i[i]
+            i[1]=math.log(t_2,2)
+            i[2]=t_1       
 
     
 
 
-print("\n")
-print("After dead code elimination - ")
-print("------------------------------")
-for i in passer:
-    if(i[0]=="="):
-        pass
-    elif(i[0] in ["+","-","*","/","==","<=","<",">",">="]):
-        print(i[3],"=",i[1],i[0],i[2])
-    elif(i[0] in ["if","goto","label","not"]):
-        if(i[0]=="if"):
-            print(i[0],i[1],"goto",i[3])
-        if(i[0]=="goto"):
-            print(i[0],i[3])
-        if(i[0]=="label"):
-            print(i[3],":")
-        if(i[0]=="not"):
-            print(i[3],"=",i[0],i[1])
